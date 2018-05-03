@@ -39,5 +39,9 @@ public abstract class StochasticSimulation {
 	    
 	    return currentTime;
 	}
+	
+	boolean checkEnded() {
+	    return PEC.isEmpty();
+	}
 
 }
