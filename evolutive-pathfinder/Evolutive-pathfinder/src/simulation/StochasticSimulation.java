@@ -3,6 +3,7 @@ package simulation;
 public abstract class StochasticSimulation {
 
     double currentTime;
+    PendingEventContainer PEC;
 	
     /**
      * 
@@ -11,6 +12,7 @@ public abstract class StochasticSimulation {
         super();
         
         this.currentTime = 0.0;
+        PEC = new PendingEventContainer();
     }
 
 	/**
@@ -18,11 +20,19 @@ public abstract class StochasticSimulation {
 	 * all generated events which belong to that time frame.
 	 * 
 	 * @param time  time interval for the simulation to be run
-	 * @return current time after this step
 	 */
-    double step(double time) {
+    void step(double time) {
+        double nextTime = currentTime + time;
         
-        return currentTime + time;
+        while (!(PEC.isEmpty()) && PEC.nextTime() <= nextTime) {
+            Event nextEvent = PEC.removeNext();
+            
+            nextEvent.trigger();
+        }
+        
+        currentTime = nextTime;
+        
+        return;
     }
 	
 	double getTime() {

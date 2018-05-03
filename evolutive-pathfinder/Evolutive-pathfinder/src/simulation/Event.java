@@ -32,4 +32,5 @@ abstract public class Event implements Comparable<Event>{
         return triggerTime;
     }
 
+    abstract public void trigger();
 }
