@@ -83,6 +83,10 @@ public class Map {
 		return (p.x-1)*this.width + (p.y-1)%this.width;
 	}
 	
+	int dist(Point z) {
+		return Math.abs(this.finalPoint.x - z.x) + Math.abs(this.finalPoint.y - z.y);
+	}
+	
 	public static void main(String[] args) {
 		int n = 5, m = 4;
 		Point i = new Point(1,1);
@@ -91,6 +95,8 @@ public class Map {
 		LinkedList<Point> o = new LinkedList<Point>();
 		
 		z.add(new SpcZone(new Point(1, 1), new Point(5,4), 4));
+		o.add(new Point(2, 3));
+		o.add(new Point(1, 1));
 		
 		Map map = new Map(n, m, i, f, z, o);
 		
@@ -101,10 +107,6 @@ public class Map {
 				System.out.println(aux2.coord + "  " + aux2.cost + "  " + c2 + "  " + c1);
 			}
 		}
-		
-		
-		
-
 	}
 }
 
