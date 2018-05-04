@@ -18,6 +18,7 @@ abstract public class Specimen {
     abstract public double getFitness();
     
     public boolean isAlive() {
+        
         return alive;
     }
 }
