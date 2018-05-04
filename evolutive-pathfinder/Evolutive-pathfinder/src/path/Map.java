@@ -33,7 +33,7 @@ public class Map {
 				this.grid.add(aux);
 			}
 		}
-		
+		System.out.println(zones.size());
 		for (int i = 0 ; i < zones.size(); i++) {
 			changeCost(zones.get(i));
 		}
@@ -63,14 +63,16 @@ public class Map {
 	private void changeCost(SpcZone zone) {
 		
 		Point aux;
+		int nrEdges = zone.edges.size();
 		
-		for (int i = 0 ; i < 4 ; i++) {
+		for (int i = 0 ; i < nrEdges ; i++) {
 			aux = zone.edges.get(i);
+			System.out.println(aux + "  " + getInd(aux));
 			for(int j = 0 ; j < this.grid.get(getInd(aux)).size() ; j++) {
-				if (this.grid.get(getInd(aux)).get(j).coord.equals(zone.edges.get((i+1)%4))) {
+				if (this.grid.get(getInd(aux)).get(j).coord.equals(zone.edges.get((i+1)%nrEdges))) {
 					this.grid.get(getInd(aux)).get(j).cost = zone.cost;
 				}
-				if (this.grid.get(getInd(aux)).get(j).coord.equals(zone.edges.get((i == 0) ? 3 : i-1))) {
+				if (this.grid.get(getInd(aux)).get(j).coord.equals(zone.edges.get((i == 0) ? nrEdges-1 : i-1))) {
 					this.grid.get(getInd(aux)).get(j).cost = zone.cost;
 				}
 			}
@@ -78,7 +80,7 @@ public class Map {
 	}
 	
 	private int getInd(Point p) {
-		return (p.x-1)%this.length + (p.y-1)/this.width;
+		return (p.x-1)*this.width + (p.y-1)%this.width;
 	}
 	
 	public static void main(String[] args) {
@@ -88,7 +90,18 @@ public class Map {
 		LinkedList<SpcZone> z = new LinkedList<SpcZone>();
 		LinkedList<Point> o = new LinkedList<Point>();
 		
+		z.add(new SpcZone(new Point(1, 1), new Point(5,4), 4));
+		
 		Map map = new Map(n, m, i, f, z, o);
+		
+		for (int c1 = 0 ; c1 < map.grid.size(); c1++) {
+			LinkedList<Edge> aux = map.grid.get(c1);
+			for (int c2 = 0 ; c2 < aux.size(); c2++) {
+				Edge aux2 = aux.get(c2);
+				System.out.println(aux2.coord + "  " + aux2.cost + "  " + c2 + "  " + c1);
+			}
+		}
+		
 		
 		
 
