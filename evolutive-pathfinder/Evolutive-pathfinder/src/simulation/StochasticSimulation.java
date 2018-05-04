@@ -1,5 +1,8 @@
 package simulation;
 
+import event.Event;
+import event.PendingEventContainer;
+
 public abstract class StochasticSimulation {
 
     double currentTime;

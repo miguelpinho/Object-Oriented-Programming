@@ -1,4 +1,6 @@
-package simulation;
+package population;
+
+import simulation.StochasticSimulation;
 
 public class PopulationSimulation extends StochasticSimulation {
 

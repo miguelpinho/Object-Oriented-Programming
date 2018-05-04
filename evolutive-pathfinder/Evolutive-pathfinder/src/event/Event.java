@@ -1,11 +1,12 @@
-package simulation;
+package event;
 
 abstract public class Event implements Comparable<Event>{
     
     double triggerTime;
 
-    public Event() {
+    public Event(double triggerTime) {
         
+        this.triggerTime = triggerTime;
     }
 
     @Override

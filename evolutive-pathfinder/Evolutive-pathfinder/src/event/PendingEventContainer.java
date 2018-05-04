@@ -1,4 +1,4 @@
-package simulation;
+package event;
 
 import java.util.TreeSet;
 
@@ -40,6 +40,10 @@ public class PendingEventContainer {
         return next.getTime();
     }
     
+    /**
+     * 
+     * @return
+     */
     public Event removeNext() {
         Event next;
         
