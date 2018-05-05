@@ -9,7 +9,7 @@ abstract public class Specimen {
         alive = true;
     }
     
-    abstract public void Reproduce();
+    abstract public Specimen Reproduce();
     
     abstract public void Die();
     
