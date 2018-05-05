@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class PopulationSimulation extends StochasticSimulation {
 
-    //private static final String  = null; what is this???
+
 	LinkedList<Specimen> specimens;
     int initPopulation;
     int mu = 1;
@@ -36,7 +36,7 @@ public class PopulationSimulation extends StochasticSimulation {
     	PopulationEvent pEvent = null;
     	
     	specimens.add(newSpecimen);
-    	newSpecimen.setDeathTime(pEvent.computeTime(mu));
+    	newSpecimen.setDeathTime(PopulationEvent.computeTime(mu));
     	PEC.add(new EventDeath(newSpecimen,newSpecimen.getDeathTime()));
     	
     	timeAux = pEvent.computeTime(delta);

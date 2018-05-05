@@ -21,7 +21,7 @@ public abstract class PopulationEvent extends Event {
         
         return agent.isAlive();
     }
-    public double computeTime(int cnt) {
+    public static double computeTime(int cnt) {
     	
     	
     	return (1 - Math.log10(agent.getFitness())*cnt);

@@ -6,7 +6,7 @@ import event.PendingEventContainer;
 public abstract class StochasticSimulation {
 
     double currentTime;
-    PendingEventContainer PEC;
+    protected PendingEventContainer PEC;
 	
     /**
      * 
