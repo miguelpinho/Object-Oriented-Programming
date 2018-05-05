@@ -21,7 +21,7 @@ abstract public class Population {
     /**
      * Create initial population.
      */
-    abstract public void creation();
+    abstract public void genesis();
     
     /**
      * The population suffers an epidemic.

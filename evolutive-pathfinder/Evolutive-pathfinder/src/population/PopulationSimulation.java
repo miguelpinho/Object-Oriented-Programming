@@ -5,12 +5,11 @@ import java.util.LinkedList;
 
 public class PopulationSimulation extends StochasticSimulation {
 
-
 	LinkedList<Specimen> specimens;
     int initPopulation;
-    int mu = 1;
-    int ro= 1;
-    int delta = 1;
+    double mu = 1;
+    double ro= 1;
+    double delta = 1;
     //Map map;//TODO import map to this class;
     
     
@@ -33,18 +32,18 @@ public class PopulationSimulation extends StochasticSimulation {
     public void addSpecimen(Specimen newSpecimen) {
     	
     	double timeAux;
-    	PopulationEvent pEvent = null;
     	
     	specimens.add(newSpecimen);
-    	newSpecimen.setDeathTime(PopulationEvent.computeTime(mu));
+    	
+    	newSpecimen.setDeathTime(randomTime(newSpecimen, mu));
     	PEC.add(new EventDeath(newSpecimen,newSpecimen.getDeathTime()));
     	
-    	timeAux = pEvent.computeTime(delta);
+    	timeAux = randomTime(newSpecimen, delta);
     	if(timeAux < newSpecimen.getDeathTime()) {
-    		PEC.add(new EventMutate(newSpecimen,timeAux));
+    		PEC.add(new EventMutate(newSpecimen, timeAux));
     	}
     	
-    	timeAux = pEvent.computeTime(ro);
+    	timeAux = randomTime(newSpecimen, ro);
     	if(timeAux < newSpecimen.getDeathTime()) {
     		PEC.add(new EventReproduce(newSpecimen,timeAux));
     	}
@@ -62,7 +61,7 @@ public class PopulationSimulation extends StochasticSimulation {
     	
     	for(int i=1;i <= initPopulation; i++) {
     		
-    		newSpecimen = new Specimen(map,initPoint);
+    		newSpecimen = new Specimen();
     		addSpecimen(newSpecimen);
     	}
     	
@@ -74,7 +73,11 @@ public class PopulationSimulation extends StochasticSimulation {
     public void epidemic() {
     	
     }
-
+    
+    protected double randomTime(Specimen agent, double param) {
+        
+        return (1 - Math.log10(agent.getFitness()) * param);  
+    }
 
 
 public void main() {

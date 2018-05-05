@@ -33,12 +33,4 @@ abstract public class Specimen {
         this.deathTime = deathTime;
     }
     
-    public static double computeTime(int cnt) {
-    	
-    	
-    	return (1 - Math.log10(getFitness())*cnt);//static problem
-    	
-    }
-    
-    
 }
