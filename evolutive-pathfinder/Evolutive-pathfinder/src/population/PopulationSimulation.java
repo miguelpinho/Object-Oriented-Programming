@@ -36,7 +36,7 @@ public class PopulationSimulation extends StochasticSimulation {
     	specimens.add(newSpecimen);
     	
     	newSpecimen.setDeathTime(randomTime(newSpecimen, mu));
-    	PEC.add(new EventDeath(newSpecimen,newSpecimen.getDeathTime()));
+    	PEC.add(new EventDeath(newSpecimen, newSpecimen.getDeathTime()));
     	
     	timeAux = randomTime(newSpecimen, delta);
     	if(timeAux < newSpecimen.getDeathTime()) {
@@ -74,6 +74,12 @@ public class PopulationSimulation extends StochasticSimulation {
     	
     }
     
+    /**
+     * 
+     * @param agent
+     * @param param
+     * @return
+     */
     protected double randomTime(Specimen agent, double param) {
         
         return (1 - Math.log10(agent.getFitness()) * param);  
