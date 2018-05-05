@@ -3,14 +3,16 @@ package population;
 import simulation.StochasticSimulation;
 import java.util.LinkedList;
 
+import path.Path;
+
 public class PopulationSimulation extends StochasticSimulation {
 
 	LinkedList<Specimen> specimens;
+	Path fittestRecord;
     int initPopulation;
     double mu = 1;
     double ro= 1;
     double delta = 1;
-    //Map map;//TODO import map to this class;
     
     
     public PopulationSimulation(int initPopulation) {
