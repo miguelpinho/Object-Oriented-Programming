@@ -3,6 +3,7 @@ package population;
 abstract public class Specimen {
 
     boolean alive;
+    double deathTime;
     
     public Specimen() {
         
@@ -21,4 +22,10 @@ abstract public class Specimen {
         
         return alive;
     }
+    
+    public double getDeathTime() {
+        
+        return deathTime;
+    }
+    
 }

@@ -9,8 +9,8 @@ public class EventMutate extends PopulationEvent {
 
     @Override
     public void trigger() {
-        // TODO Auto-generated method stub
 
+        
     }
 
 }

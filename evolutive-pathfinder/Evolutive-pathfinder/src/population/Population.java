@@ -8,11 +8,12 @@ abstract public class Population {
     
     public Population() {
         
+        this.specimens = new LinkedList<Specimen>();
     }
     
     public Population(LinkedList<Specimen> specimens) {
         
-        this.specimens = (LinkedList<Specimen>) specimens.clone();
+        this.specimens =  specimens;
     }
     
     abstract public void addSpecimen(Specimen newSpecimen);
