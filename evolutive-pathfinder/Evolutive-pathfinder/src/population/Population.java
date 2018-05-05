@@ -13,7 +13,7 @@ abstract public class Population {
     
     public Population(LinkedList<Specimen> specimens) {
         
-        this.specimens =  specimens;
+        //this.specimens =  specimens;
     }
     
     abstract public void addSpecimen(Specimen newSpecimen);

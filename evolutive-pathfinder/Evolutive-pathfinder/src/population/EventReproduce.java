@@ -10,7 +10,8 @@ public class EventReproduce extends PopulationEvent {
     @Override
     public void trigger() {
 
-        
+        agent.Reproduce();
+    	
     }
 
 }
