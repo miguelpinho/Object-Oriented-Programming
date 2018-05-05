@@ -11,7 +11,6 @@ abstract public class Population {
     }
     
     public Population(LinkedList<Specimen> specimens) {
-        
         this.specimens = (LinkedList<Specimen>) specimens.clone();
     }
     

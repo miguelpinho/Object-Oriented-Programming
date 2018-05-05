@@ -7,13 +7,17 @@ public class Map {
 	int length, width;
 	Point initialPoint;
 	Point finalPoint;
+	int cmax;
+	int k;
 	LinkedList<LinkedList<Edge>> grid;
 	
-	public Map(int n, int m,  Point i , Point f, LinkedList<SpcZone> zones, LinkedList<Point> obstacles){
+	public Map(int n, int m,  int cmax, int k, Point i , Point f, LinkedList<SpcZone> zones, LinkedList<Point> obstacles){
 		this.length = n;
 		this.width = m;
 		this.initialPoint = i;
 		this.finalPoint = f;
+		this.cmax = cmax;
+		this.k = k;
 		
 		fillGrid (zones, obstacles);
 	}
@@ -98,7 +102,7 @@ public class Map {
 		o.add(new Point(2, 3));
 		o.add(new Point(1, 1));
 		
-		Map map = new Map(n, m, i, f, z, o);
+		Map map = new Map(n, m, 4, 1, i, f, z, o);
 		
 		for (int c1 = 0 ; c1 < map.grid.size(); c1++) {
 			LinkedList<Edge> aux = map.grid.get(c1);
