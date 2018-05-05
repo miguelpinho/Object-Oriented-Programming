@@ -1,12 +1,11 @@
 package path;
-import population.Specimen;
 
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Random;
 
 /** Type of Specimen used in this problem **/
-public class Path extends Specimen implements Cloneable {
+public class Path {
 	
 	Map map;
 	int cost;
@@ -20,6 +19,13 @@ public class Path extends Specimen implements Cloneable {
 		
 	}
 	
+	public Path( Path other) {
+	    this.map = other.map;
+	    this.cost = other.cost;
+	    this.path = new LinkedList<Edge>(other.path);
+	    
+	}
+	
 	@Override
 	public String toString() {
 		String toPrint = "{";
@@ -30,14 +36,12 @@ public class Path extends Specimen implements Cloneable {
 		return toPrint;
 	}
 	
-	@Override
-	public Path clone() throws CloneNotSupportedException {
-	    return (Path)super.clone();
-	}
-	
-	/** Function responsible for creating a new specimen, descendent from this one, with the characteristics needed **/
-	public Specimen Reproduce() throws CloneNotSupportedException {
-		Path son = (Path) this.clone();
+	/**
+	 * Function responsible for creating a new specimen, descendent from this one, with the characteristics needed
+	 * @return
+	 */
+	public Path reproduce() {
+		Path son = new Path(this);
 		
 		double newLength = Math.ceil(0.9 * (double) this.length() + 0.1 * (double) this.length() * this.getFitness());
 		
@@ -50,13 +54,10 @@ public class Path extends Specimen implements Cloneable {
 		return son;
 	}
     
-	/** Function responsible for killing a Specimen **/
-    public void Die() {
-    	this.alive = false;
-    }
-    
-    /** Function responsible for mutating this kind of Specimen - moving it **/
-    public void Mutate() {
+	/**
+	 * Function responsible for mutating this kind of Specimen - moving it
+	 */
+    public void mutate() {
     	Random rn = new Random();
     	LinkedList<Edge> cur = this.map.grid.get(this.map.getInd(this.currentPos()));
     	
@@ -74,13 +75,41 @@ public class Path extends Specimen implements Cloneable {
     	}
     	
     }
-    
-    /** Function responsible for calculating the Fitness of a Specimen **/
+   
+    /**
+     * Function responsible for calculating the Fitness of a Specimen
+     * @return 
+     */
     public double getFitness() {
     	float a = 1 -  ( (float) this.cost - (float) this.length() + 2) / (( (float) this.map.cmax-1)* (float) this.length() + 3);
     	float b = 1 - (float) this.dist() / ( (float) this.map.length + (float) this.map.width +1);
     	
     	return Math.pow(a, this.map.k) * Math.pow(b, this.map.k);
+    }
+    
+    /**
+     * 
+     * @param path
+     * @return
+     */
+    public boolean isFitter(Path other) {
+        if (other == null)
+            return true;
+        
+        if (this.reachedEnd()) {
+            if (!(other.reachedEnd()))
+                return true;
+        
+        }else {
+            if (other.reachedEnd()) 
+                return false;
+                        
+        }
+        
+        if (this.getFitness() > other.getFitness())
+            return true;
+        
+        return false;
     }
     
     private int length() {
@@ -93,6 +122,10 @@ public class Path extends Specimen implements Cloneable {
     
     private Point currentPos() {
     	return this.path.getLast().coord;
+    }
+    
+    private boolean reachedEnd() {
+        
     }
     
     public static void main(String[] args) throws CloneNotSupportedException {
@@ -118,31 +151,31 @@ public class Path extends Specimen implements Cloneable {
 		
 		Path p = new Path(map, i);
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.Mutate();
+		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		Path s = (Path) p.Reproduce();
+		Path s = (Path) p.reproduce();
 		System.out.println(s + " " + s.cost + " " + s.getFitness());
 		
 		

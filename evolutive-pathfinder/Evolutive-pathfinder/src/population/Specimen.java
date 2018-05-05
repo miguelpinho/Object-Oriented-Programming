@@ -1,22 +1,39 @@
 package population;
 
-abstract public class Specimen {
+import path.Path;
+
+public class Specimen {
 
     boolean alive;
     double deathTime;
+    Path entity;
     
-    public Specimen() {
+    public Specimen(Path entity) {
+        
+        this.entity = entity;
         
         alive = true;
     }
     
-    abstract public Specimen Reproduce() throws CloneNotSupportedException;
+    public Specimen reproduce() {
+        
+        return new Specimen(entity.reproduce());
+    }
     
-    abstract public void Die();
+    public void die() {
+        
+        alive = false;
+    }
     
-    abstract public void Mutate();
+    public void mutate() {
+        
+        entity.mutate();
+    }
 
-    abstract public double getFitness();
+    public double getFitness() {
+        
+        return entity.getFitness();
+    }
     
     public boolean isAlive() {
         
