@@ -27,5 +27,10 @@ abstract public class Specimen {
         
         return deathTime;
     }
+   
+    public void setDeathTime(double deathTime) {
+        
+        this.deathTime = deathTime;
+    }
     
 }

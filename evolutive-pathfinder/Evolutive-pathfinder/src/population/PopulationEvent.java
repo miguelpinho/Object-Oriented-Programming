@@ -12,5 +12,11 @@ public abstract class PopulationEvent extends Event {
         
         this.agent = agent;
     }
+    
+    @Override
+    public boolean isValid() {
+        
+        return agent.isAlive();
+    }
 
 }

@@ -18,6 +18,14 @@ abstract public class Population {
     
     abstract public void addSpecimen(Specimen newSpecimen);
     
+    /**
+     * Create initial population.
+     */
+    abstract public void creation();
+    
+    /**
+     * The population suffers an epidemic.
+     */
     abstract public void epidemic();
 
 }

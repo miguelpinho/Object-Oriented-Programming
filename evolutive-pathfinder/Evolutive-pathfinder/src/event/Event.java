@@ -39,4 +39,7 @@ abstract public class Event implements Comparable<Event> {
     }
 
     abstract public void trigger();
+    
+    abstract public boolean isValid();
+    
 }

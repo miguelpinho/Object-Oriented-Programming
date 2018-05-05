@@ -55,5 +55,22 @@ public class PendingEventContainer {
         
         return next;
     }
+    
+    /**
+     * Add new pending event.
+     */
+    public void add(Event newEvent) {
+        
+        events.add(newEvent);
+    }
+    
+    /**
+     * Delete all the pending events that are marked as no longer valid, due to,
+     * for example, an exception.
+     */
+    public void deleteAllInvalid() {
+        //TODO
+        
+    }
 
 }

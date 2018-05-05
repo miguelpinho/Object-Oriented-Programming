@@ -6,9 +6,10 @@ public class PopulationSimulation extends StochasticSimulation {
 
     Population geneBank;
     
-    public PopulationSimulation() {
-        
+    public PopulationSimulation(Population initial) {
         super();
+        
+        geneBank = initial;
     }
 
 }
