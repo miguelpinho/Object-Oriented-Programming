@@ -2,6 +2,7 @@ package population;
 
 public class EventDeath extends PopulationEvent {
 
+	
     public EventDeath(Specimen agent, double triggerTime) {
         
         super(agent, triggerTime);
@@ -14,5 +15,6 @@ public class EventDeath extends PopulationEvent {
     	agent.Die();
         
     }
+  
 
 }
