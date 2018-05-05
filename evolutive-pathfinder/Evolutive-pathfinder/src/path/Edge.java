@@ -11,5 +11,10 @@ class Edge {
 		this.coord = new Point(x, y);
 		this.cost = c;
 	}
+	
+	public Edge(Point p, int c) {
+		this.coord = p;
+		this.cost = c;
+	}
 
 }
