@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Random;
 
-
+/** Type of Specimen used in this problem **/
 public class Path extends Specimen implements Cloneable {
 	
 	Map map;
@@ -35,6 +35,7 @@ public class Path extends Specimen implements Cloneable {
 	    return (Path)super.clone();
 	}
 	
+	/** Function responsible for creating a new specimen, descendent from this one, with the characteristics needed **/
 	public Specimen Reproduce() throws CloneNotSupportedException {
 		Path son = (Path) this.clone();
 		
@@ -49,10 +50,12 @@ public class Path extends Specimen implements Cloneable {
 		return son;
 	}
     
+	/** Function responsible for killing a Specimen **/
     public void Die() {
-    	
+    	this.alive = false;
     }
     
+    /** Function responsible for mutating this kind of Specimen - moving it **/
     public void Mutate() {
     	Random rn = new Random();
     	LinkedList<Edge> cur = this.map.grid.get(this.map.getInd(this.currentPos()));
@@ -63,7 +66,7 @@ public class Path extends Specimen implements Cloneable {
     		this.path.add(cur.get(nInd));
     		this.cost += cur.get(nInd).cost;
     	} else {
-    		// Erasing loops
+    		// Avoiding loops
     		int newLast = this.path.indexOf(cur.get(nInd));
     		while( this.path.size() > newLast + 1 ) {
     			this.cost -= this.path.removeLast().cost;
@@ -71,7 +74,8 @@ public class Path extends Specimen implements Cloneable {
     	}
     	
     }
-
+    
+    /** Function responsible for calculating the Fitness of a Specimen **/
     public double getFitness() {
     	float a = 1 -  ( (float) this.cost - (float) this.length() + 2) / (( (float) this.map.cmax-1)* (float) this.length() + 3);
     	float b = 1 - (float) this.dist() / ( (float) this.map.length + (float) this.map.width +1);
