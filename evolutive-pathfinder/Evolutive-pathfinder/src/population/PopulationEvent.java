@@ -21,11 +21,10 @@ public abstract class PopulationEvent extends Event {
         
         return agent.isAlive();
     }
-    @Override
-    public double computeTime(int constant) {
+    public double computeTime(int cnt) {
     	
     	
-    	return (1 - Math.log10(agent.getFitness())*constant);
+    	return (1 - Math.log10(agent.getFitness())*cnt);
     	
     }
 

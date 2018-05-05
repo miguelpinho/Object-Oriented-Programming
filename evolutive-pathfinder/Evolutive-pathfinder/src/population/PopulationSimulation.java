@@ -5,11 +5,15 @@ import java.util.LinkedList;
 
 public class PopulationSimulation extends StochasticSimulation {
 
-    LinkedList<Specimen> specimens;
+    //private static final String  = null; what is this???
+	LinkedList<Specimen> specimens;
     int initPopulation;
-    //int mu = mu;
-    //int ro= ro;
-    //int delta = delta;
+    int mu = 1;
+    int ro= 1;
+    int delta = 1;
+    //Map map;//TODO import map to this class;
+    
+    
     public PopulationSimulation(int initPopulation) {
         super();
         this.initPopulation = initPopulation;
@@ -29,19 +33,20 @@ public class PopulationSimulation extends StochasticSimulation {
     public void addSpecimen(Specimen newSpecimen) {
     	
     	double timeAux;
+    	PopulationEvent pEvent = null;
     	
     	specimens.add(newSpecimen);
-    	newSpecimen.setDeathTime(PopulationEvent.computeTime(mu));
-    	PEC.add(new EventDeath(new_specimen,newSpecimen.getDeathTime()));
+    	newSpecimen.setDeathTime(pEvent.computeTime(mu));
+    	PEC.add(new EventDeath(newSpecimen,newSpecimen.getDeathTime()));
     	
-    	timeAux = PopulationEvent.computeTime(delta);
+    	timeAux = pEvent.computeTime(delta);
     	if(timeAux < newSpecimen.getDeathTime()) {
-    		PEC.add(new EventMove(new_specimen,timeAux));
+    		PEC.add(new EventMutate(newSpecimen,timeAux));
     	}
     	
-    	timeAux = PopulationEvent.computeTime(ro);
+    	timeAux = pEvent.computeTime(ro);
     	if(timeAux < newSpecimen.getDeathTime()) {
-    		PEC.add(new EventReproduce(new_specimen,timeAux));
+    		PEC.add(new EventReproduce(newSpecimen,timeAux));
     	}
     	
     	//TODO the list is not sorted according to time of event!!
@@ -57,7 +62,7 @@ public class PopulationSimulation extends StochasticSimulation {
     	
     	for(int i=1;i <= initPopulation; i++) {
     		
-    		newSpecimen = new Specimen();
+    		newSpecimen = new Specimen(map,initPoint);
     		addSpecimen(newSpecimen);
     	}
     	
@@ -70,6 +75,12 @@ public class PopulationSimulation extends StochasticSimulation {
     	
     }
 
+
+
+public void main() {
+	
+	Specimen newSpecimen;
+
+	}
+
 }
-
-
