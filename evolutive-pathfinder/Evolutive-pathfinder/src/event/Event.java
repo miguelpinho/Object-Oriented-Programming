@@ -1,6 +1,11 @@
 package event;
 
-abstract public class Event implements Comparable<Event>{
+/**
+ * 
+ * 
+ * @author group06
+ */
+abstract public class Event implements Comparable<Event> {
     
     double triggerTime;
 

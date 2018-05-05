@@ -12,8 +12,12 @@ abstract public class Population {
     }
     
     public Population(LinkedList<Specimen> specimens) {
+<<<<<<< HEAD
         
         this.specimens =  specimens;
+=======
+        this.specimens = (LinkedList<Specimen>) specimens.clone();
+>>>>>>> 8da212f404aa68ee37da5a6570493906468c3837
     }
     
     abstract public void addSpecimen(Specimen newSpecimen);

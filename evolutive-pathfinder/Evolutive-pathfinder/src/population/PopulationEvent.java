@@ -13,10 +13,4 @@ public abstract class PopulationEvent extends Event {
         this.agent = agent;
     }
 
-    @Override
-    public void trigger() {
-        // TODO Auto-generated method stub
-
-    }
-
 }
