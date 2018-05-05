@@ -9,6 +9,9 @@ public class EventDeath extends PopulationEvent {
 
     @Override
     public void trigger() {
+    	
+    	//agent.alive = false;
+    	agent.Die();
         
     }
 

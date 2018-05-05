@@ -4,7 +4,7 @@ import event.Event;
 
 public abstract class PopulationEvent extends Event {
     
-    Population geneBank;
+    PopulationSimulation geneBank;
     Specimen agent;
 
     public PopulationEvent(Specimen agent, double triggerTime) {
