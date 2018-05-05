@@ -83,7 +83,7 @@ public class Map {
 		}
 	}
 	
-	private int getInd(Point p) {
+	int getInd(Point p) {
 		return (p.x-1)*this.width + (p.y-1)%this.width;
 	}
 	

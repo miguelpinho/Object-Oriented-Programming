@@ -3,6 +3,8 @@ import population.Specimen;
 
 import java.awt.Point;
 import java.util.LinkedList;
+import java.util.Random;
+
 
 public class Path extends Specimen  {
 	
@@ -16,7 +18,7 @@ public class Path extends Specimen  {
 
 	}
 	
-	public void Reproduce() {
+	public Specimen Reproduce() {
 		
 	}
     
@@ -25,6 +27,21 @@ public class Path extends Specimen  {
     }
     
     public void Mutate() {
+    	Random rn = new Random();
+    	LinkedList<Edge> cur = this.map.grid.get(this.map.getInd(this.currentPos()));
+    	
+    	int nInd = rn.nextInt(cur.size());
+    	
+    	if ( !this.path.contains(cur.get(nInd))) {
+    		this.path.add(new Edge(cur.get(nInd).coord, cur.get(nInd).cost));
+    		this.cost += cur.get(nInd).cost;
+    	} else {
+    		// Closing loops
+    		int newLast = this.path.indexOf(cur.get(nInd));
+    		while( this.path.size() > newLast + 1 ) {
+    			this.cost -= this.path.removeLast().cost;
+    		}
+    	}
     	
     }
 
@@ -37,8 +54,11 @@ public class Path extends Specimen  {
     }
     
     private int dist() {
-    	Point cur = this.path.getLast().coord;
-    	return this.map.dist(cur);
+     	return this.map.dist(this.currentPos());
+    }
+    
+    private Point currentPos() {
+    	return this.path.getLast().coord;
     }
 
 }
