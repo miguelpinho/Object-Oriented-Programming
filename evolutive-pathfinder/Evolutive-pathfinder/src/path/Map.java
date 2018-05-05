@@ -91,26 +91,6 @@ public class Map {
 		return Math.abs(this.finalPoint.x - z.x) + Math.abs(this.finalPoint.y - z.y);
 	}
 	
-	public static void main(String[] args) {
-		int n = 5, m = 4;
-		Point i = new Point(1,1);
-		Point f = new Point(5,4);
-		LinkedList<SpcZone> z = new LinkedList<SpcZone>();
-		LinkedList<Point> o = new LinkedList<Point>();
-		
-		z.add(new SpcZone(new Point(1, 1), new Point(5,4), 4));
-		o.add(new Point(2, 3));
-		o.add(new Point(1, 1));
-		
-		Map map = new Map(n, m, 4, 1, i, f, z, o);
-		
-		for (int c1 = 0 ; c1 < map.grid.size(); c1++) {
-			LinkedList<Edge> aux = map.grid.get(c1);
-			for (int c2 = 0 ; c2 < aux.size(); c2++) {
-				Edge aux2 = aux.get(c2);
-				System.out.println(aux2.coord + "  " + aux2.cost + "  " + c2 + "  " + c1);
-			}
-		}
-	}
+	
 }
 

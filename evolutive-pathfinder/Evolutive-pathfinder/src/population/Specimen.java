@@ -10,7 +10,7 @@ abstract public class Specimen {
         alive = true;
     }
     
-    abstract public Specimen Reproduce();
+    abstract public Specimen Reproduce() throws CloneNotSupportedException;
     
     abstract public void Die();
     
