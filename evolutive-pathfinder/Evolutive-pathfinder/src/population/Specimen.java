@@ -2,7 +2,7 @@ package population;
 
 abstract public class Specimen {
 
-    boolean alive;
+    protected boolean alive;
     double deathTime;
     
     public Specimen() {

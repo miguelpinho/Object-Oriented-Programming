@@ -3,6 +3,7 @@ package path;
 import java.awt.Point;
 import java.util.LinkedList;
 
+/** Class that has all the information about the grid **/
 public class Map {
 	int length, width;
 	Point initialPoint;
@@ -22,6 +23,7 @@ public class Map {
 		fillGrid (zones, obstacles);
 	}
 	
+	// The grid will be implemented as a list of all the points in it.Each one of them is a list of the edges associated
 	private void fillGrid (LinkedList<SpcZone> zones, LinkedList<Point> obstacles) {
 		this.grid = new LinkedList<LinkedList<Edge>>();
 		
@@ -49,14 +51,14 @@ public class Map {
 		// Left edge, if it exists
 		if(inMap(i-1, j) && !obstacles.contains(new Point(i-1, j))) aux.addLast(new Edge(i-1, j, 1));
 		
+		// Upper edge, if it exists
+		if(inMap(i, j+1) && !obstacles.contains(new Point(i, j+1))) aux.addLast(new Edge(i, j+1, 1));
+				
 		// Right edge, if it exists
 		if(inMap(i+1, j) && !obstacles.contains(new Point(i+1, j))) aux.addLast(new Edge(i+1, j, 1));
 				
 		// Down edge, if it exists
 		if(inMap(i, j-1) && !obstacles.contains(new Point(i, j-1))) aux.addLast(new Edge(i, j-1, 1));
-		
-		// Upper edge, if it exists
-		if(inMap(i, j+1) && !obstacles.contains(new Point(i, j+1))) aux.addLast(new Edge(i, j+1, 1));
 	}
 	
 	private boolean inMap (int i, int j) {
@@ -83,10 +85,12 @@ public class Map {
 		}
 	}
 	
+	// Conversion of coordinates in the index
 	int getInd(Point p) {
 		return (p.x-1)*this.width + (p.y-1)%this.width;
 	}
 	
+	// Calculation of the dist function needed to calculate the Fitness
 	int dist(Point z) {
 		return Math.abs(this.finalPoint.x - z.x) + Math.abs(this.finalPoint.y - z.y);
 	}
