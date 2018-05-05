@@ -42,4 +42,6 @@ abstract public class Event implements Comparable<Event> {
     
     abstract public boolean isValid();
     
+    abstract public double computeTime(int constant);
+    
 }
