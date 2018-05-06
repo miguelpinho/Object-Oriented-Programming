@@ -2,17 +2,20 @@ package population;
 
 public class EventReproduce extends PopulationEvent {
 
-    public EventReproduce(Specimen agent, double triggerTime) {
+    public EventReproduce(Specimen agent, double triggerTime, PopulationSimulation geneBank) {
         
-        super(agent, triggerTime);
+        super(agent, triggerTime, geneBank);
     }
 
     @Override
     public void trigger() {
-
-        agent.reproduce();
+        
+    	Specimen son = agent.reproduce();
     	
+    	geneBank.addSpecimen(son); 	
+        geneBank.addReproduce(agent);
+    	//throw new ExceedsPopulation(); Ve isto Pinho
     }
-
+    
 
 }
