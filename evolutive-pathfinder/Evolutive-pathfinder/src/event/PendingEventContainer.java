@@ -1,6 +1,7 @@
 package event;
 
 import java.util.TreeSet;
+import java.util.Iterator;
 
 /**
  * Implements a pending event container, where Events can be added 
@@ -92,8 +93,16 @@ public class PendingEventContainer {
      * for example, an exception.
      */
     public void deleteAllInvalid() {
-        //TODO
         
+    	Iterator<Event> it;
+        it = events.iterator();
+    	
+    	
+        while (it.hasNext()) {
+    		if(!it.next().isValid()) {
+    			it.remove();	
+    		}
+        }
     }
     
     public int eventsTriggered() {
