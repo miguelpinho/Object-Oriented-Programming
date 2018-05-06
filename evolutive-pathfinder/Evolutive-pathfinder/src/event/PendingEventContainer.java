@@ -1,7 +1,7 @@
 package event;
 
-import java.util.TreeSet;
-import java.util.Iterator;
+import java.util.PriorityQueue;
+import java.util.Arrays;
 
 /**
  * Implements a pending event container, where Events can be added 
@@ -10,7 +10,7 @@ import java.util.Iterator;
  */
 public class PendingEventContainer {
 
-    TreeSet<Event> events;
+    PriorityQueue<Event> events;
     int eventCounter;
     
     /**
@@ -18,7 +18,7 @@ public class PendingEventContainer {
      */
     public PendingEventContainer() {
         
-        events = new TreeSet<Event>();
+        events = new PriorityQueue<Event>();
         eventCounter = 0;
     }
     
@@ -38,7 +38,8 @@ public class PendingEventContainer {
     public double nextTime() {
         Event next;
         
-        next = events.first();
+        
+        next = events.peek();
         
         return next.getTime();
     }
@@ -54,7 +55,7 @@ public class PendingEventContainer {
             return null;
         }
         
-        next = events.pollFirst();
+        next = events.poll();
         
         eventCounter++;
         
@@ -71,7 +72,7 @@ public class PendingEventContainer {
             return false;
         }
         
-        next = events.pollFirst();
+        next = events.poll();
         
         eventCounter++;
         
@@ -93,15 +94,14 @@ public class PendingEventContainer {
      * for example, an exception.
      */
     public void deleteAllInvalid() {
+    	
+    	Event[] aux = (Event[]) events.toArray();; 
+        events = new PriorityQueue<Event>();
         
-    	Iterator<Event> it;
-        it = events.iterator();
-    	
-    	
-        while (it.hasNext()) {
-    		if(!it.next().isValid()) {
-    			it.remove();	
-    		}
+        for(int i = 0;i<aux.length;i++) {
+        	if(aux[i].isValid()) {
+        		events.add(aux[i]);
+        	}
         }
     }
     
