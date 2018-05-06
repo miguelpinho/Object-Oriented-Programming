@@ -8,7 +8,6 @@ import path.Path;
 public class PopulationSimulation extends StochasticSimulation {
 
 	LinkedList<Specimen> specimens;
-	Path fittestRecord;
 	
     int initPopulation;
     double mu = 1;
@@ -17,15 +16,16 @@ public class PopulationSimulation extends StochasticSimulation {
     
     public PopulationSimulation(int initPopulation) {
         super();
+        
         this.initPopulation = initPopulation;
         this.specimens = new LinkedList<Specimen>();
         
     }
   
     /**
-	 *  Create new specimen with corresponding death,reproduction and mutation events and adds it
-	 *  to the population.
-	 * */
+	 *  Adds a new specimen to the population, creating the corresponding death,reproduction and mutation events 
+	 *  @param newSpecimen Specimen to add
+	 */
     public void addSpecimen(Specimen newSpecimen) {
     	
     	double timeAux;
@@ -46,21 +46,17 @@ public class PopulationSimulation extends StochasticSimulation {
     	}
     	
     	//TODO the list is not sorted according to time of event!!
-    	// It is, by default!
+    	// It is, by default! The event list is sorted automatically
     }
     
     /**
      * Create initial population.
      */
-    
     public void genesis() {
     	
-    	Specimen newSpecimen;
-    	
     	for(int i=1;i <= initPopulation; i++) {
-    		
-    		newSpecimen = new Specimen();
-    		addSpecimen(newSpecimen);
+
+    		addSpecimen(new Specimen());
     	}
     	
     }
@@ -84,9 +80,9 @@ public class PopulationSimulation extends StochasticSimulation {
     }
 
 
-public void main() {
+    public void main() {
 	
-	Specimen newSpecimen;
+        Specimen newSpecimen;
 
 	}
 

@@ -8,6 +8,7 @@ import java.util.Random;
 public class Path {
     
     static Map pathMap = null;
+    static Path fittestPath = null;
 	
 	int cost;
 	LinkedList<Edge> path;
@@ -17,10 +18,18 @@ public class Path {
 	    pathMap = m;
 	}
 	
+	public static Path getFittest() {
+	    
+	    return fittestPath;
+	}
+	
 	public Path( ) {
 		this.cost = 0;
 		this.path = new LinkedList<Edge>();
 		this.path.add(new Edge(pathMap.initialPoint, 0));
+		
+	     // Check if this new path is the fittest
+        this.updateFittest();
 		
 	}
 	
@@ -41,7 +50,7 @@ public class Path {
 	}
 	
 	/**
-	 * Function responsible for creating a new specimen, descendent from this one, with the characteristics needed
+	 * Function responsible for creating a new specimen, descendant from this one, with the characteristics needed
 	 * @return
 	 */
 	public Path reproduce() {
@@ -54,6 +63,9 @@ public class Path {
 		for(int i = son.path.size() - 1; i > newLength ; i--) {
 			son.cost -= son.path.removeLast().cost; 
 		}
+		
+	    // Check if this new reproduction path is the new fittest
+        son.updateFittest();
 		
 		return son;
 	}
@@ -78,6 +90,9 @@ public class Path {
     		}
     	}
     	
+    	// Check if this mutation produced a new fittest path
+        this.updateFittest();
+    	
     }
    
     /**
@@ -92,11 +107,12 @@ public class Path {
     }
     
     /**
-     * 
+     * Checks if a path is a better candidate than another one. If only one of them has reached the end, it is the one chose,
+     * Else, compares them based on their fitness.
      * @param path
      * @return
      */
-    public boolean isFitter(Path other) {
+    protected boolean isFitter(Path other) {
         if (other == null)
             return true;
         
@@ -114,6 +130,16 @@ public class Path {
             return true;
         
         return false;
+    }
+    
+    /**
+     * Updates fittest path.
+     */
+    protected void updateFittest() {
+        if (this.isFitter(fittestPath)) {
+            
+            fittestPath = new Path(this);
+        }
     }
     
     private int length() {

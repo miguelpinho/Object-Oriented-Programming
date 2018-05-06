@@ -8,16 +8,16 @@ public class Specimen {
     double deathTime;
     Path entity;
     
-    public Specimen(Path entity) {
+    public Specimen() {
         
-        this.entity = entity;
+        this.entity = new Path();
         
         alive = true;
     }
     
-    public Specimen() {
+    public Specimen(Path entity) {
         
-        this.entity = new Path();
+        this.entity = entity;
         
         alive = true;
     }

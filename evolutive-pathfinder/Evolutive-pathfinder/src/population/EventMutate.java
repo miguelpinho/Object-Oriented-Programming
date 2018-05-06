@@ -10,7 +10,7 @@ public class EventMutate extends PopulationEvent {
     @Override
     public void trigger() {
     	
-    	agent.Mutate();
+    	agent.mutate();
         
     }
   
