@@ -35,13 +35,17 @@ public abstract class StochasticSimulation {
         return;
     }
 	
-	double getTime() {
+	public double getTime() {
 	    
 	    return currentTime;
 	}
 	
-	boolean checkEnded() {
+	public boolean checkEnded() {
 	    return PEC.isEmpty();
+	}
+	
+	public void printState() {
+	    
 	}
 
 }
