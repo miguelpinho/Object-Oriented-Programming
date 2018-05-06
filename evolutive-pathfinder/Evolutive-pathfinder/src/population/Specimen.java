@@ -1,6 +1,5 @@
 package population;
 
-import java.util.Comparator;
 import path.Path;
 
 public class Specimen {
@@ -58,5 +57,9 @@ public class Specimen {
         this.deathTime = deathTime;
     }
     
+    public static void printState() {
+        
+        Path.printState();
+    }
     
 }

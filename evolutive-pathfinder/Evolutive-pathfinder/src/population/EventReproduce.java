@@ -12,9 +12,16 @@ public class EventReproduce extends PopulationEvent {
         
     	Specimen son = agent.reproduce();
     	
-    	geneBank.addSpecimen(son); 	
         geneBank.addReproduce(agent);
-    	//throw new ExceedsPopulation(); Ve isto Pinho
+    	
+    	try {
+            
+            geneBank.addSpecimen(son);
+        } catch (ExceedsPopulation e) {
+            
+            geneBank.epidemic();
+        }
+
     }
     
 
