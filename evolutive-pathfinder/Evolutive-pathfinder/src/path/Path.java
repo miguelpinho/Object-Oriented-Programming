@@ -6,21 +6,25 @@ import java.util.Random;
 
 /** Type of Specimen used in this problem **/
 public class Path {
+    
+    static Map pathMap = null;
 	
-	Map map;
 	int cost;
 	LinkedList<Edge> path;
 	
-	public Path( Map m, Point i) {
-		this.map = m;
+	public static void setMap( Map m) {
+	    
+	    pathMap = m;
+	}
+	
+	public Path( ) {
 		this.cost = 0;
 		this.path = new LinkedList<Edge>();
-		this.path.add(new Edge(i, 0));
+		this.path.add(new Edge(pathMap.initialPoint, 0));
 		
 	}
 	
 	public Path( Path other) {
-	    this.map = other.map;
 	    this.cost = other.cost;
 	    this.path = new LinkedList<Edge>(other.path);
 	    
@@ -59,7 +63,7 @@ public class Path {
 	 */
     public void mutate() {
     	Random rn = new Random();
-    	LinkedList<Edge> cur = this.map.grid.get(this.map.getInd(this.currentPos()));
+    	LinkedList<Edge> cur = pathMap.grid.get(pathMap.getInd(this.currentPos()));
     	
     	int nInd = rn.nextInt(cur.size());
     	
@@ -81,10 +85,10 @@ public class Path {
      * @return 
      */
     public double getFitness() {
-    	float a = 1 -  ( (float) this.cost - (float) this.length() + 2) / (( (float) this.map.cmax-1)* (float) this.length() + 3);
-    	float b = 1 - (float) this.dist() / ( (float) this.map.length + (float) this.map.width +1);
+    	float a = 1 -  ( (float) this.cost - (float) this.length() + 2) / (( (float) pathMap.cmax-1)* (float) this.length() + 3);
+    	float b = 1 - (float) this.dist() / ( (float) pathMap.length + (float) pathMap.width +1);
     	
-    	return Math.pow(a, this.map.k) * Math.pow(b, this.map.k);
+    	return Math.pow(a, pathMap.k) * Math.pow(b, pathMap.k);
     }
     
     /**
@@ -117,15 +121,18 @@ public class Path {
     }
     
     private int dist() {
-     	return this.map.dist(this.currentPos());
+        
+     	return pathMap.dist(this.currentPos());
     }
     
     private Point currentPos() {
+        
     	return this.path.getLast().coord;
     }
     
     private boolean reachedEnd() {
         
+        return currentPos().equals(pathMap.finalPoint) ;
     }
     
     public static void main(String[] args) throws CloneNotSupportedException {
@@ -149,7 +156,9 @@ public class Path {
 			}
 		}
 		
-		Path p = new Path(map, i);
+		Path.setMap(map);
+		
+		Path p = new Path();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
 		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());

@@ -9,22 +9,17 @@ public class PopulationSimulation extends StochasticSimulation {
 
 	LinkedList<Specimen> specimens;
 	Path fittestRecord;
+	
     int initPopulation;
     double mu = 1;
     double ro= 1;
     double delta = 1;
-    
     
     public PopulationSimulation(int initPopulation) {
         super();
         this.initPopulation = initPopulation;
         this.specimens = new LinkedList<Specimen>();
         
-    }
-    public PopulationSimulation(LinkedList<Specimen> specimens) {
-	    super();
-      
-        this.specimens =  specimens;
     }
   
     /**
@@ -51,6 +46,7 @@ public class PopulationSimulation extends StochasticSimulation {
     	}
     	
     	//TODO the list is not sorted according to time of event!!
+    	// It is, by default!
     }
     
     /**

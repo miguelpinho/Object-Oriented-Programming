@@ -15,6 +15,13 @@ public class Specimen {
         alive = true;
     }
     
+    public Specimen() {
+        
+        this.entity = new Path();
+        
+        alive = true;
+    }
+
     public Specimen reproduce() {
         
         return new Specimen(entity.reproduce());
