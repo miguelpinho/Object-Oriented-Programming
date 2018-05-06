@@ -1,6 +1,5 @@
 package simulation;
 
-import event.Event;
 import event.PendingEventContainer;
 
 public abstract class StochasticSimulation {
@@ -28,9 +27,7 @@ public abstract class StochasticSimulation {
         double nextTime = currentTime + time;
         
         while (!(PEC.isEmpty()) && PEC.nextTime() <= nextTime) {
-            Event nextEvent = PEC.removeNext();
-            
-            nextEvent.trigger();
+            PEC.triggerNext();
         }
         
         currentTime = nextTime;

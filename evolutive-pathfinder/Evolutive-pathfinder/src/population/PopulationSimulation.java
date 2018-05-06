@@ -3,8 +3,6 @@ package population;
 import simulation.StochasticSimulation;
 import java.util.LinkedList;
 
-import path.Path;
-
 public class PopulationSimulation extends StochasticSimulation {
 
 	LinkedList<Specimen> specimens;
@@ -81,8 +79,6 @@ public class PopulationSimulation extends StochasticSimulation {
 
 
     public void main() {
-	
-        Specimen newSpecimen;
 
 	}
 

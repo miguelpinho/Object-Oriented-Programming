@@ -10,6 +10,7 @@ import java.util.TreeSet;
 public class PendingEventContainer {
 
     TreeSet<Event> events;
+    int eventCounter;
     
     /**
      * Empty constructor for pending event container.
@@ -17,6 +18,7 @@ public class PendingEventContainer {
     public PendingEventContainer() {
         
         events = new TreeSet<Event>();
+        eventCounter = 0;
     }
     
     /**
@@ -53,7 +55,28 @@ public class PendingEventContainer {
         
         next = events.pollFirst();
         
+        eventCounter++;
+        
         return next;
+    }
+    
+    /**
+     * 
+     */
+    public boolean triggerNext() {
+        Event next;
+        
+        if (events.isEmpty()) {
+            return false;
+        }
+        
+        next = events.pollFirst();
+        
+        eventCounter++;
+        
+        next.trigger();
+        
+        return true;
     }
     
     /**
@@ -71,6 +94,11 @@ public class PendingEventContainer {
     public void deleteAllInvalid() {
         //TODO
         
+    }
+    
+    public int eventsTriggered() {
+       
+        return eventCounter;
     }
 
 }
