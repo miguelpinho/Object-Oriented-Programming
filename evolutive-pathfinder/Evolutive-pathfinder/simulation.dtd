@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT simulation (grid, initialpoint, finalpoint, specialcostzones, obstacles, events)>
+<!ATTLIST simulation comforsens CDATA #REQUIRED
+					 maxpop CDATA #REQUIRED
+					 initpop CDATA #REQUIRED
+					 finalinst CDATA #REQUIRED>
+<!ELEMENT grid EMPTY>
+<!ATTLIST grid rowsnb CDATA #REQUIRED 
+		  	   colsnb CDATA #REQUIRED>
+<!ELEMENT initialpoint EMPTY>
+<!ATTLIST initialpoint xinicial CDATA #REQUIRED
+					   yinicial CDATA #REQUIRED>
+<!ELEMENT finalpoint EMPTY>
+<!ATTLIST finalpoint xfinal CDATA #REQUIRED
+					 yfinal CDATA #REQUIRED>
+<!ELEMENT specialcostzones (zone*)> 
+<!ELEMENT zone EMPTY>
+<!ATTLIST zone xinicial CDATA #REQUIRED
+			   yinicial CDATA #REQUIRED
+			   xfinal CDATA #REQUIRED
+			   yfinal CDATA #REQUIRED>
+<!ELEMENT obstacles (obstacle*)>
+<!ATTLIST obstacles num CDATA #REQUIRED>
+<!ELEMENT obstacle EMPTY>
+<!ATTLIST obstacle xpos CDATA #REQUIRED
+				   ypos CDATA #REQUIRED>
+<!ELEMENT events (death, reproduction, move)>
+<!ELEMENT death EMPTY>
+<!ATTLIST death param CDATA #REQUIRED>
+<!ELEMENT reproduction EMPTY>
+<!ATTLIST reproduction param CDATA #REQUIRED>
+<!ELEMENT move EMPTY>
+<!ATTLIST move param CDATA #REQUIRED>
