@@ -76,10 +76,27 @@ public class PopulationSimulation extends StochasticSimulation {
         
         return (1 - Math.log10(agent.getFitness()) * param);  
     }
+    
+    @Override
+    public void printState() {
+        
+        super.printState();
+        
+        System.out.print("Population size: ");
+        System.out.println(populationSize());
+        
+        Specimen.printState();
+        
+    }
 
+    private int populationSize() {
+        
+        return 0;
+    }
 
     public void main() {
 
+        
 	}
 
 }

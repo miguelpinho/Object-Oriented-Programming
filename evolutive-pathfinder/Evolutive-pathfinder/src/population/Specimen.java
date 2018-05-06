@@ -57,4 +57,9 @@ public class Specimen {
         this.deathTime = deathTime;
     }
     
+    public static void printState() {
+        
+        Path.printState();
+    }
+    
 }

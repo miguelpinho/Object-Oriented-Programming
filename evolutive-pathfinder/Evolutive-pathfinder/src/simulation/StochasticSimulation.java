@@ -45,6 +45,10 @@ public abstract class StochasticSimulation {
 	}
 	
 	public void printState() {
+	    System.out.print("Present instant:");
+	    System.out.println(currentTime);
+	    System.out.print("Number of realized events:");
+        System.out.println(PEC.eventsTriggered());
 	    
 	}
 

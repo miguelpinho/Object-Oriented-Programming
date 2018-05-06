@@ -161,6 +161,29 @@ public class Path {
         return currentPos().equals(pathMap.finalPoint) ;
     }
     
+    public static void printState() {
+        
+        System.out.print("Final point has been hit: ");
+        if (fittestPath != null && fittestPath.reachedEnd()) {
+            
+            System.out.println("yes");
+        } else {
+            
+            System.out.println("no");
+        }
+        
+        if (fittestPath != null) {
+            
+            System.out.print("Path of the best fit individual: ");
+            System.out.println(fittestPath.toString());
+            
+            System.out.print("Cost/confort: ");
+            System.out.println(fittestPath.getFitness());
+            
+        }
+        
+    }
+    
     public static void main(String[] args) throws CloneNotSupportedException {
 		int n = 5, m = 4;
 		Point i = new Point(1,1);
