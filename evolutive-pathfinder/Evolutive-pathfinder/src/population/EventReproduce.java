@@ -23,6 +23,5 @@ public class EventReproduce extends PopulationEvent {
         }
 
     }
-    
 
 }

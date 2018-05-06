@@ -51,8 +51,6 @@ public abstract class StochasticSimulation {
 	    return PEC.isEmpty();
 	}
 	
-	
-	
 	public void printState() {
 	    System.out.print("Present instant: ");
 	    System.out.println(currentTime);
@@ -62,9 +60,14 @@ public abstract class StochasticSimulation {
 	    
 	}
 	
+	/**
+	 * Generates a random exponential variable. Based on the code given in the project presentation lecture.
+	 * @param mean
+	 * @return
+	 */
 	public static double randomExp(double mean) {
         
-	    return mean;
+	    return -mean * Math.log(1.0 - randGen.nextDouble());
 	}
 
 }

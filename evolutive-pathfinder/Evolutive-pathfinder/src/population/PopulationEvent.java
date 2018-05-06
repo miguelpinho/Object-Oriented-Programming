@@ -6,8 +6,10 @@ public abstract class PopulationEvent extends Event {
     
     PopulationSimulation geneBank;
     Specimen agent;
+    
+    static double param;
 
-    public PopulationEvent(Specimen agent, double triggerTime,PopulationSimulation geneBank ) {
+    public PopulationEvent(Specimen agent, double triggerTime, PopulationSimulation geneBank ) {
         
         super(triggerTime);
         
