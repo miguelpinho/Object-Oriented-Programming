@@ -121,7 +121,22 @@ public class PopulationSimulation extends StochasticSimulation {
      */
     public void epidemic() {
         
+    	int aliveCounter = 0;
+    	
         Collections.sort(specimens, new CompareFit());
+        
+        for (int i = 0; i < specimens.size(); i++) {
+			if(specimens.get(i).isAlive()) {
+				if(aliveCounter>5) {
+					if(randGen.nextDouble() > specimens.get(i).getFitness()) {
+						specimens.get(i).die();
+					}
+				}
+				aliveCounter++;
+			}
+			
+		}
+        PEC.deleteAllInvalid();
         
         
     }
