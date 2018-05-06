@@ -25,26 +25,53 @@ public class PopulationSimulation extends StochasticSimulation {
 	 *  @param newSpecimen Specimen to add
 	 */
     public void addSpecimen(Specimen newSpecimen) {
-    	
-    	double timeAux;
-    	
-    	specimens.add(newSpecimen);
-    	
-    	newSpecimen.setDeathTime(randomTime(newSpecimen, mu));
-    	PEC.add(new EventDeath(newSpecimen, newSpecimen.getDeathTime()));
-    	
-    	timeAux = randomTime(newSpecimen, delta);
-    	if(timeAux < newSpecimen.getDeathTime()) {
-    		PEC.add(new EventMutate(newSpecimen, timeAux));
-    	}
-    	
-    	timeAux = randomTime(newSpecimen, ro);
-    	if(timeAux < newSpecimen.getDeathTime()) {
-    		PEC.add(new EventReproduce(newSpecimen,timeAux));
-    	}
-    	
-    	//TODO the list is not sorted according to time of event!!
-    	// It is, by default! The event list is sorted automatically
+        
+        
+        specimens.add(newSpecimen);
+        
+        addDeath(newSpecimen);
+        
+        addReproduce(newSpecimen);
+        
+        addMutation(newSpecimen);
+    
+    }
+    
+    
+    public void addReproduce(Specimen agent) {
+        
+        double timeAux;
+        
+        timeAux = randomTime(agent, delta);
+        if(timeAux < agent.getDeathTime()) {
+            PEC.add(new EventMutate(agent, timeAux, this));
+        }   
+        
+    }
+    
+    public void addMutation(Specimen agent) {
+        
+        double timeAux;
+        
+        timeAux = randomTime(agent, ro);
+        if(timeAux < agent.getDeathTime()) {
+            PEC.add(new EventReproduce(agent,timeAux,this));
+        }   
+        
+    }
+    
+    
+    public void addDeath(Specimen agent) {
+        
+        double timeAux;
+        
+        timeAux = randomTime(agent, mu);
+        if(timeAux < simulationTime) {
+        agent.setDeathTime(randomTime(agent, mu));
+        PEC.add(new EventDeath(agent, agent.getDeathTime(),this));  
+        }else {
+            agent.setDeathTime(simulationTime);
+        }
     }
     
     /**
@@ -62,8 +89,11 @@ public class PopulationSimulation extends StochasticSimulation {
     /**
      * The population suffers an epidemic.
      */
-    public void epidemic() {
-    	
+        public void epidemic() {
+        
+        Collections.sort(specimens, new CompareFit());
+        
+        
     }
     
     /**

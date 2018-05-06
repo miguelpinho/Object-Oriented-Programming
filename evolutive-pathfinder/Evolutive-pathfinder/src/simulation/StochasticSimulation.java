@@ -6,6 +6,7 @@ public abstract class StochasticSimulation {
 
     double currentTime;
     protected PendingEventContainer PEC;
+    protected double simulationTime
 	
     /**
      * 
