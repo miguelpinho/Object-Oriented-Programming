@@ -48,16 +48,17 @@ public abstract class StochasticSimulation {
 	}
 	
 	public boolean checkEnded() {
+	    
 	    return PEC.isEmpty();
 	}
 	
 	public void printState() {
+	    
 	    System.out.print("Present instant: ");
 	    System.out.println(currentTime);
 	    
 	    System.out.print("Number of realized events: ");
         System.out.println(PEC.eventsTriggered());
-	    
 	}
 	
 	/**
@@ -65,7 +66,7 @@ public abstract class StochasticSimulation {
 	 * @param mean
 	 * @return
 	 */
-	public static double randomExp(double mean) {
+	protected static double randomExp(double mean) {
         
 	    return -mean * Math.log(1.0 - randGen.nextDouble());
 	}

@@ -45,24 +45,6 @@ public class PendingEventContainer {
     
     /**
      * 
-     * @return
-     */
-    public Event removeNext() {
-        Event next;
-        
-        if (events.isEmpty()) {
-            return null;
-        }
-        
-        next = events.pollFirst();
-        
-        eventCounter++;
-        
-        return next;
-    }
-    
-    /**
-     * 
      */
     public boolean triggerNext() {
         Event next;
@@ -96,7 +78,6 @@ public class PendingEventContainer {
         
     	Iterator<Event> it;
         it = events.iterator();
-    	
     	
         while (it.hasNext()) {
     		if(!it.next().isValid()) {
