@@ -7,7 +7,7 @@ package event;
  */
 abstract public class Event implements Comparable<Event> {
     
-    double triggerTime;
+    protected double triggerTime;
 
     public Event(double triggerTime) {
         
@@ -19,13 +19,10 @@ abstract public class Event implements Comparable<Event> {
         int cmp = 0;
                
         // Ascending order
-        if (triggerTime == toEvent.triggerTime) {
-            //TODO handle duplicate events!!
-            
-        } else if (triggerTime < toEvent.triggerTime) {
+        if (triggerTime < toEvent.triggerTime) {
             
             cmp = -1;
-        } else {
+        } else if (triggerTime > toEvent.triggerTime) {
             
             cmp = 1;
         }

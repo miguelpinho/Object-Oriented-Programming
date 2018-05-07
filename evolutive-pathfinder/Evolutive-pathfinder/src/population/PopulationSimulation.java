@@ -8,8 +8,8 @@ public class PopulationSimulation extends StochasticSimulation {
 
 	LinkedList<Specimen> specimens;
 	
-    int initPop, maxPop, curPop;
-    int paramDeath, paramMutation, paramReproduce;
+    protected int initPop, maxPop, curPop;
+    protected int paramDeath, paramMutation, paramReproduce;
     
     /**
      * Creates a simulation of a population evolution, with random death, reproduction and mutation events.
@@ -136,8 +136,8 @@ public class PopulationSimulation extends StochasticSimulation {
 			}
 			
 		}
-        PEC.deleteAllInvalid();
         
+        PEC.deleteAllInvalid();
         
     }
     
@@ -157,10 +157,5 @@ public class PopulationSimulation extends StochasticSimulation {
         
         return curPop;
     }
-
-    public void main() {
-
-        
-	}
 
 }

@@ -4,9 +4,9 @@ import path.Path;
 
 public class Specimen {
 
-    boolean alive;
-    double deathTime;
-    Path entity;
+    protected boolean alive;
+    protected double deathTime;
+    protected Path entity;
     
     public Specimen() {
         
