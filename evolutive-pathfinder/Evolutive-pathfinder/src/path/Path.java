@@ -7,33 +7,23 @@ import java.util.Random;
 /** Type of Specimen used in this problem **/
 public class Path {
     
-    static Map pathMap = null;
-    static Path fittestPath = null;
+    Map pathMap;
 	
 	int cost;
 	LinkedList<Edge> path;
 	
-	public static void setMap( Map m) {
+	public Path( Map m) {
+		this.pathMap = m;
 	    
-	    pathMap = m;
-	}
-	
-	public static Path getFittest() {
-	    
-	    return fittestPath;
-	}
-	
-	public Path( ) {
-		this.cost = 0;
+	    this.cost = 0;
 		this.path = new LinkedList<Edge>();
 		this.path.add(new Edge(pathMap.initialPoint, 0));
-		
-	     // Check if this new path is the fittest
-        this.updateFittest();
 		
 	}
 	
 	public Path( Path other) {
+	    this.pathMap = other.pathMap;
+	    
 	    this.cost = other.cost;
 	    this.path = new LinkedList<Edge>(other.path);
 	    
@@ -64,9 +54,6 @@ public class Path {
 			son.cost -= son.path.removeLast().cost; 
 		}
 		
-	    // Check if this new reproduction path is the new fittest
-        son.updateFittest();
-		
 		return son;
 	}
     
@@ -90,9 +77,6 @@ public class Path {
     		}
     	}
     	
-    	// Check if this mutation produced a new fittest path
-        this.updateFittest();
-    	
     }
    
     /**
@@ -112,34 +96,29 @@ public class Path {
      * @param path
      * @return
      */
-    protected boolean isFitter(Path other) {
+    public boolean isFitter(Path other) {
         if (other == null)
             return true;
         
         if (this.reachedEnd()) {
-            if (!(other.reachedEnd()))
+            if (other.reachedEnd()) {
+                
+                return (this.cost > other.cost);
+            } else {
+                
                 return true;
-        
+            }
+
         }else {
-            if (other.reachedEnd()) 
+            if (other.reachedEnd()) {
+                
                 return false;
-                        
+            } else {
+                
+                return (this.getFitness() > other.getFitness());
+            }       
         }
-        
-        if (this.getFitness() > other.getFitness())
-            return true;
-        
-        return false;
-    }
-    
-    /**
-     * Updates fittest path.
-     */
-    protected void updateFittest() {
-        if (this.isFitter(fittestPath)) {
-            
-            fittestPath = new Path(this);
-        }
+
     }
     
     private int length() {
@@ -161,26 +140,22 @@ public class Path {
         return currentPos().equals(pathMap.finalPoint) ;
     }
     
-    public static void printState() {
+    public void printState() {
         
         System.out.print("Final point has been hit: ");
-        if (fittestPath != null && fittestPath.reachedEnd()) {
+        if (reachedEnd()) {
             
             System.out.println("yes");
         } else {
             
             System.out.println("no");
         }
-        
-        if (fittestPath != null) {
             
-            System.out.print("Path of the best fit individual: ");
-            System.out.println(fittestPath.toString());
+        System.out.print("Path of the best fit individual: ");
+        System.out.println(toString());
             
-            System.out.print("Cost/confort: ");
-            System.out.println(fittestPath.getFitness());
-            
-        }
+        System.out.print("Cost/confort: ");
+        System.out.println(getFitness());
         
     }
     
@@ -205,9 +180,7 @@ public class Path {
 			}
 		}
 		
-		Path.setMap(map);
-		
-		Path p = new Path();
+		Path p = new Path(map);
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
 		p.mutate();
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
@@ -235,8 +208,6 @@ public class Path {
 		System.out.println(p + " " + p.cost + " " +  p.getFitness());
 		Path s = (Path) p.reproduce();
 		System.out.println(s + " " + s.cost + " " + s.getFitness());
-		
-		
 		
 	}
 }

@@ -11,7 +11,8 @@ public class EventMutate extends PopulationEvent {
     public void trigger() {
     	
     	agent.mutate();
-    	geneBank.addMutation(agent);
+    	
+    	geneBank.scheduleMutation(agent);
         
     }
   

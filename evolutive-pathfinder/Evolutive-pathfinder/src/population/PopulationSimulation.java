@@ -4,12 +4,16 @@ import simulation.StochasticSimulation;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import path.Path;
+
 public class PopulationSimulation extends StochasticSimulation {
 
 	LinkedList<Specimen> specimens;
 	
     protected int initPop, maxPop, curPop;
     protected int paramDeath, paramMutation, paramReproduce;
+    
+    protected Path fittest;
     
     /**
      * Creates a simulation of a population evolution, with random death, reproduction and mutation events.
@@ -20,7 +24,7 @@ public class PopulationSimulation extends StochasticSimulation {
      * @param paramMutation Parameter for mutation event random variable 
      * @param paramReproduce Parameter for reproduce event random variable
      */
-    public PopulationSimulation(double simulationTime, int initPop, int maxPop, int paramDeath, int paramMutation, int paramReproduce) {
+    public PopulationSimulation(double simulationTime, int initPop, int maxPop, int paramDeath, int paramMutation, int paramReproduce, LinkedList<Path> pioneers) {
         super(simulationTime);
         
         this.initPop = initPop;
@@ -33,9 +37,11 @@ public class PopulationSimulation extends StochasticSimulation {
         
         this.specimens = new LinkedList<Specimen>();
         
-        genesis();
+        fittest = null;
+        
+        genesis(pioneers);
     }
-  
+
     /**
 	 *  Adds a new specimen to the population, creating the corresponding death,reproduction and mutation events 
 	 *  @param newSpecimen Specimen to add
@@ -44,9 +50,9 @@ public class PopulationSimulation extends StochasticSimulation {
         
         specimens.add(newSpecimen);
         
-        addDeath(newSpecimen);
-        addReproduce(newSpecimen);
-        addMutation(newSpecimen);
+        scheduleDeath(newSpecimen);
+        scheduleReproduce(newSpecimen);
+        scheduleMutation(newSpecimen);
     
         curPop++;
         if (curPop > maxPop) {
@@ -56,7 +62,7 @@ public class PopulationSimulation extends StochasticSimulation {
     }
     
     
-    public void addReproduce(Specimen agent) {
+    public void scheduleReproduce(Specimen agent) {
         
         double timeAux;
         
@@ -68,9 +74,11 @@ public class PopulationSimulation extends StochasticSimulation {
         
     }
     
-    public void addMutation(Specimen agent) {
+    public void scheduleMutation(Specimen agent) {
         
         double timeAux;
+        
+        agent.updateFittest(fittest);
         
         timeAux = StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * paramMutation);
         
@@ -81,7 +89,7 @@ public class PopulationSimulation extends StochasticSimulation {
     }
     
     
-    public void addDeath(Specimen agent) {
+    public void scheduleDeath(Specimen agent) {
         
         double timeAux;
         
@@ -100,13 +108,13 @@ public class PopulationSimulation extends StochasticSimulation {
     /**
      * Create initial population.
      */
-    public void genesis() {
+    public void genesis(LinkedList<Path> pioneers) {
     	
-    	for(int i=1;i <= initPop; i++) {
+    	for(int i=0; i < pioneers.size(); i++) {
 
     		try {
     		    
-    		    addSpecimen(new Specimen());
+    		    addSpecimen(new Specimen(pioneers.get(i)));
     		} catch (ExceedsPopulation e) {
     		    
     		    epidemic();
@@ -149,7 +157,9 @@ public class PopulationSimulation extends StochasticSimulation {
         System.out.print("Population size: ");
         System.out.println(populationSize());
         
-        Specimen.printState();
+        if (fittest != null) {
+            fittest.printState();
+        }
         
     }
 

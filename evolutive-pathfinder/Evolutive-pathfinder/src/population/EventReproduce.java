@@ -12,7 +12,7 @@ public class EventReproduce extends PopulationEvent {
         
     	Specimen son = agent.reproduce();
     	
-        geneBank.addReproduce(agent);
+        geneBank.scheduleReproduce(agent);
     	
     	try {
             

@@ -8,13 +8,6 @@ public class Specimen {
     protected double deathTime;
     protected Path entity;
     
-    public Specimen() {
-        
-        this.entity = new Path();
-        
-        alive = true;
-    }
-    
     public Specimen(Path entity) {
         
         this.entity = entity;
@@ -57,9 +50,16 @@ public class Specimen {
         this.deathTime = deathTime;
     }
     
-    public static void printState() {
+    /**
+     * Updates fittest path.
+     */
+    public Path updateFittest(Path fittestPath) {
+        if (entity.isFitter(fittestPath)) {
+            
+            return new Path(entity);
+        }
         
-        Path.printState();
+        return fittestPath;
     }
     
 }
