@@ -2,6 +2,7 @@ package population;
 
 import simulation.StochasticSimulation;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import path.Path;
@@ -61,12 +62,27 @@ public class PopulationSimulation extends StochasticSimulation {
         }
     }
     
+    public void removeDead() {
+    
+        Specimen s;
+        Iterator<Specimen> cur = specimens.iterator();
+        
+        while(cur.hasNext()) {
+            
+            s = (Specimen) cur.next();
+            
+            if (!(s.isAlive())) {
+                
+                cur.remove();
+            }
+        }
+    }
     
     public void scheduleReproduce(Specimen agent) {
         
         double timeAux;
         
-        timeAux = StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * paramReproduce);
+        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * paramReproduce);
         
         if(timeAux < agent.getDeathTime()) {
             PEC.add(new EventMutate(agent, timeAux, this));
@@ -80,7 +96,7 @@ public class PopulationSimulation extends StochasticSimulation {
         
         agent.updateFittest(fittest);
         
-        timeAux = StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * paramMutation);
+        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * paramMutation);
         
         if(timeAux < agent.getDeathTime()) {
             PEC.add(new EventReproduce(agent, timeAux, this));
@@ -93,12 +109,12 @@ public class PopulationSimulation extends StochasticSimulation {
         
         double timeAux;
         
-        timeAux = StochasticSimulation.randomExp((1 - Math.log10(1 - agent.getFitness())) * paramDeath);
+        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(1 - agent.getFitness())) * paramDeath);
         
         if(timeAux < simulationTime) {
             
             agent.setDeathTime(timeAux);
-            PEC.add(new EventDeath(agent, agent.getDeathTime(),this));  
+            PEC.add(new EventDeath(agent, agent.getDeathTime(), this));  
         } else {
             
             agent.setDeathTime(simulationTime);
@@ -129,18 +145,19 @@ public class PopulationSimulation extends StochasticSimulation {
      */
     public void epidemic() {
         
-    	int aliveCounter = 0;
+    	int spareCounter = 0;
     	
         Collections.sort(specimens, new CompareFit());
         
         for (int i = 0; i < specimens.size(); i++) {
 			if(specimens.get(i).isAlive()) {
-				if(aliveCounter>5) {
+				if(spareCounter > 5) {
 					if(randGen.nextDouble() > specimens.get(i).getFitness()) {
 						specimens.get(i).die();
 					}
 				}
-				aliveCounter++;
+				
+				spareCounter++;
 			}
 			
 		}

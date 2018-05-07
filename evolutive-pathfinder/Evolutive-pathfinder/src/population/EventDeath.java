@@ -11,6 +11,8 @@ public class EventDeath extends PopulationEvent {
     public void trigger() {
     	
     	agent.die();
+    	
+    	geneBank.removeDead();
     }
  
 }

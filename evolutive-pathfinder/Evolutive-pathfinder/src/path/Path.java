@@ -159,7 +159,7 @@ public class Path {
         
     }
     
-    public static void main(String[] args) throws CloneNotSupportedException {
+    public static void main(String[] args) {
 		int n = 5, m = 4;
 		Point i = new Point(1,1);
 		Point f = new Point(5,4);
