@@ -31,8 +31,12 @@ public abstract class StochasticSimulation {
     void step(double time) {
         double targetTime = currentTime + time;
         
+        if (targetTime > simulationTime) {
+            targetTime = simulationTime;
+        }
+        
         while (!(PEC.isEmpty()) && PEC.nextTime() <= targetTime) {
-            this.currentTime = PEC.nextTime();
+            currentTime = PEC.nextTime();
             
             PEC.triggerNext();
         }
