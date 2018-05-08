@@ -1,4 +1,4 @@
-package input;
+package projectG06;
 
 import java.io.File;
 import java.awt.Point;
@@ -12,10 +12,11 @@ public class ParseSimulationInput extends DefaultHandler{
 	
 	static String file_name;
 	
-	int n, m, tau, k, v, vmax, u, delta, p;
+	int n, m, tau, k, v, vmax, u, delta, p, cmax;
 	Point i, f;
 	LinkedList<SpcZone> z;
 	LinkedList<Point> o;
+	
 
 	 public void startDocument(){   
 		 System.out.println("Beginning the parsing of"+ file_name);   
@@ -100,6 +101,7 @@ public class ParseSimulationInput extends DefaultHandler{
 		 		this.f = new Point(xf, yf);
 		 		break;
 		 	case "specialcostzones":
+		 	    cmax = 1;
 		 		this.z = new LinkedList<SpcZone>();
 		 		break;
 		 	case "zone":
@@ -158,6 +160,7 @@ public class ParseSimulationInput extends DefaultHandler{
 	 }  
 	 public void characters(char[]ch,int start,int length){   
 		 String cost = new String(ch,start,length);
+		 this.cmax = Math.max(Integer.parseInt(cost), cmax);
 		 this.z.getLast().setCost(Integer.parseInt(cost));
 		 System.out.println(cost);  
 	 } 
