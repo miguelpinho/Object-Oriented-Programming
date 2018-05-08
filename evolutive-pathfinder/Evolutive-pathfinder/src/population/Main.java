@@ -24,16 +24,16 @@ public class Main {
         
         LinkedList<Path> pioneers = new LinkedList<Path>();
         
-        for (int k = 0; k < 10; k++) {
+        for (int k = 0; k < 4; k++) {
             pioneers.add(new Path(map));
         }
                         
-        PopulationSimulation ps = new PopulationSimulation(100.0, 100, 10, 1, 1, pioneers);
+        PopulationSimulation ps = new PopulationSimulation(200.0, 50, 5, 1, 1, pioneers);
         
         ps.printState();        
         while (!ps.checkEnded()) {
             
-            ps.step(100.0/20);
+            ps.step(200.0/20);
             ps.printState();
         }
     }

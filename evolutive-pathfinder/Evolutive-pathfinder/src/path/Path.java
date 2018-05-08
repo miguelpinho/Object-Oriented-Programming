@@ -155,9 +155,9 @@ public class Path {
         System.out.println(toString());
             
         System.out.print("Cost/confort: ");
-        System.out.print(getFitness());
+        System.out.print(cost);
         System.out.print(" / ");
-        System.out.println(cost);
+        System.out.println(getFitness());
         
     }
     

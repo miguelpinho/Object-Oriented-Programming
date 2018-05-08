@@ -37,7 +37,6 @@ public class PendingEventContainer {
     public double nextTime() {
         Event next;
         
-        
         next = events.peek();
         
         return next.getTime();

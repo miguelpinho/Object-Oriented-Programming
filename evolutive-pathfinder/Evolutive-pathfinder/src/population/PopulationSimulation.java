@@ -143,7 +143,7 @@ public class PopulationSimulation extends StochasticSimulation {
         
     	int spareCounter = 0;
     	
-        Collections.sort(specimens, new CompareFit());
+        Collections.sort(specimens, new OrderFit());
         
         for (int i = 0; i < specimens.size(); i++) {
 			if(specimens.get(i).isAlive()) {
@@ -151,9 +151,10 @@ public class PopulationSimulation extends StochasticSimulation {
 					if(randGen.nextDouble() > specimens.get(i).getFitness()) {
 						specimens.get(i).die();
 					}
+				} else {
+				    
+				    spareCounter++;
 				}
-				
-				spareCounter++;
 			}
 			
 		}
