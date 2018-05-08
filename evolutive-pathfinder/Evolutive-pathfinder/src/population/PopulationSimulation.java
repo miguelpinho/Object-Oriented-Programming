@@ -59,7 +59,25 @@ public class PopulationSimulation extends StochasticSimulation {
         }
     }
     
-    public void removeDead() {
+    public void removeOneDead() {
+        
+        Specimen s;
+        Iterator<Specimen> cur = specimens.iterator();
+        
+        while(cur.hasNext()) {
+            
+            s = (Specimen) cur.next();
+            
+            if (!(s.isAlive())) {
+                
+                cur.remove();
+                
+                return;
+            }
+        }
+    }
+    
+    public void removeAllDead() {
     
         Specimen s;
         Iterator<Specimen> cur = specimens.iterator();
@@ -162,7 +180,7 @@ public class PopulationSimulation extends StochasticSimulation {
         
         PEC.deleteAllInvalid();
         
-        removeDead();
+        removeAllDead();
         
     }
     
