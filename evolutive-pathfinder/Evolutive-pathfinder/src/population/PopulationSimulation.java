@@ -59,7 +59,7 @@ public class PopulationSimulation extends StochasticSimulation {
         }
     }
     
-    public void removeOneDead() {
+    public void removeDead() {
         
         Specimen s;
         Iterator<Specimen> cur = specimens.iterator();

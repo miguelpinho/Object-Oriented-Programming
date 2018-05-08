@@ -10,8 +10,5 @@ public class ExceedsPopulation extends Exception {
 	public ExceedsPopulation() {
 		super();
 	}
-	
-	
-	
 
 }

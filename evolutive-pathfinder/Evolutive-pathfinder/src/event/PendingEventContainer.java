@@ -9,8 +9,8 @@ import java.util.PriorityQueue;
  */
 public class PendingEventContainer {
 
-    PriorityQueue<Event> events;
-    int eventCounter;
+    protected PriorityQueue<Event> events;
+    protected int eventCounter;
     
     /**
      * Empty constructor for pending event container.
@@ -42,14 +42,11 @@ public class PendingEventContainer {
         return next.getTime();
     }
     
-    /**
-     * 
-     */
     public boolean triggerNext() {
         Event next;
         
         if (events.isEmpty()) {
-            //System.out.println("**************No more events!");
+            System.out.println("**************No more events!");
             
             return false;
         }
@@ -57,7 +54,7 @@ public class PendingEventContainer {
         next = events.poll();
         
         if (!next.isValid()) {
-            //System.out.println("***************Invalid event!");            
+            System.out.println("***************Invalid event!");            
             
             return false;
         }
@@ -93,6 +90,10 @@ public class PendingEventContainer {
         }
     }
     
+    /**
+     * Get the number of events triggered until this moment.
+     * @return number of events triggered
+     */
     public int eventsTriggered() {
        
         return eventCounter;
