@@ -11,7 +11,7 @@ public class PopulationSimulation extends StochasticSimulation {
 
 	LinkedList<Specimen> specimens;
 	
-    protected int initPop, maxPop, curPop;
+    protected int maxPop;
     protected int paramDeath, paramMutation, paramReproduce;
     
     protected Path fittest;
@@ -25,12 +25,10 @@ public class PopulationSimulation extends StochasticSimulation {
      * @param paramMutation Parameter for mutation event random variable 
      * @param paramReproduce Parameter for reproduce event random variable
      */
-    public PopulationSimulation(double simulationTime, int initPop, int maxPop, int paramDeath, int paramMutation, int paramReproduce, LinkedList<Path> pioneers) {
+    public PopulationSimulation(double simulationTime, int maxPop, int paramDeath, int paramMutation, int paramReproduce, LinkedList<Path> pioneers) {
         super(simulationTime);
         
-        this.initPop = initPop;
         this.maxPop = maxPop;
-        this.curPop = 0;
         
         this.paramDeath = paramDeath;
         this.paramMutation = paramMutation;
@@ -55,8 +53,7 @@ public class PopulationSimulation extends StochasticSimulation {
         scheduleReproduce(newSpecimen);
         scheduleMutation(newSpecimen);
     
-        curPop++;
-        if (curPop > maxPop) {
+        if (specimens.size() > maxPop) {
             
             throw new ExceedsPopulation();
         }
@@ -78,11 +75,27 @@ public class PopulationSimulation extends StochasticSimulation {
         }
     }
     
+    public void scheduleDeath(Specimen agent) {
+            
+        double timeAux;
+        
+        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(1 - agent.getFitness())) * (double) paramDeath);
+        
+        if(timeAux < simulationTime) {
+            
+            agent.setDeathTime(timeAux);
+            PEC.add(new EventDeath(agent, agent.getDeathTime(), this));  
+        } else {
+            
+            agent.setDeathTime(simulationTime);
+        }
+    }
+    
     public void scheduleReproduce(Specimen agent) {
         
         double timeAux;
         
-        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * paramReproduce);
+        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * (double) paramReproduce);
         
         if(timeAux < agent.getDeathTime()) {
             PEC.add(new EventMutate(agent, timeAux, this));
@@ -94,31 +107,14 @@ public class PopulationSimulation extends StochasticSimulation {
         
         double timeAux;
         
-        agent.updateFittest(fittest);
+        fittest = agent.updateFittest(fittest);
         
-        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * paramMutation);
+        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * (double) paramMutation);
         
         if(timeAux < agent.getDeathTime()) {
             PEC.add(new EventReproduce(agent, timeAux, this));
         }   
         
-    }
-    
-    
-    public void scheduleDeath(Specimen agent) {
-        
-        double timeAux;
-        
-        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(1 - agent.getFitness())) * paramDeath);
-        
-        if(timeAux < simulationTime) {
-            
-            agent.setDeathTime(timeAux);
-            PEC.add(new EventDeath(agent, agent.getDeathTime(), this));  
-        } else {
-            
-            agent.setDeathTime(simulationTime);
-        }
     }
     
     /**
@@ -164,6 +160,8 @@ public class PopulationSimulation extends StochasticSimulation {
         
         PEC.deleteAllInvalid();
         
+        removeDead();
+        
     }
     
     @Override
@@ -182,7 +180,7 @@ public class PopulationSimulation extends StochasticSimulation {
 
     private int populationSize() {
         
-        return curPop;
+        return specimens.size();
     }
 
 }

@@ -48,7 +48,7 @@ public class Path {
 		
 		double newLength = Math.ceil(0.9 * (double) this.length() + 0.1 * (double) this.length() * this.getFitness());
 		
-		System.out.println(newLength);
+		//System.out.println(newLength);
 		
 		for(int i = son.path.size() - 1; i > newLength ; i--) {
 			son.cost -= son.path.removeLast().cost; 
@@ -103,7 +103,7 @@ public class Path {
         if (this.reachedEnd()) {
             if (other.reachedEnd()) {
                 
-                return (this.cost > other.cost);
+                return (this.cost < other.cost);
             } else {
                 
                 return true;
@@ -155,7 +155,9 @@ public class Path {
         System.out.println(toString());
             
         System.out.print("Cost/confort: ");
-        System.out.println(getFitness());
+        System.out.print(getFitness());
+        System.out.print(" / ");
+        System.out.println(cost);
         
     }
     

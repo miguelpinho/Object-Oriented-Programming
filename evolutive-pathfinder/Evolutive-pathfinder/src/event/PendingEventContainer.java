@@ -1,7 +1,6 @@
 package event;
 
 import java.util.PriorityQueue;
-import java.util.Arrays;
 
 /**
  * Implements a pending event container, where Events can be added 
@@ -95,7 +94,7 @@ public class PendingEventContainer {
      */
     public void deleteAllInvalid() {
     	
-    	Event[] aux = (Event[]) events.toArray();; 
+    	Event[] aux = events.toArray(new Event[0]); 
         events = new PriorityQueue<Event>();
         
         for(int i = 0;i<aux.length;i++) {

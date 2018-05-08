@@ -3,14 +3,14 @@ package path;
 import java.awt.Point;
 import java.util.LinkedList;
 
-class SpcZone {
+public class SpcZone {
 	
 	int cost;
 	Point initialPoint;
 	Point finalPoint;
 	LinkedList<Point> edges;
 	
-	SpcZone(Point i, Point f, int z) {
+	public SpcZone(Point i, Point f, int z) {
 		this.cost = z;
 		this.initialPoint = i;
 		this.finalPoint = f;

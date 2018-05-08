@@ -28,7 +28,7 @@ public abstract class StochasticSimulation {
 	 * 
 	 * @param time  time interval for the simulation to be run
 	 */
-    void step(double time) {
+    public void step(double time) {
         double targetTime = currentTime + time;
         
         if (targetTime > simulationTime) {

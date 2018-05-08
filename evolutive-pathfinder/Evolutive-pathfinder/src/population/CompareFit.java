@@ -7,16 +7,14 @@ public class CompareFit implements Comparator<Specimen> {
 	@Override
 	public int compare(Specimen arg0, Specimen arg1) {
 		
-		if(arg0.getFitness()>arg1.getFitness()) {
+		if(arg0.getFitness() > arg1.getFitness()) {
 			return 1;
 		}
-		if(arg0.getFitness()<arg1.getFitness()) {
+		if(arg0.getFitness() < arg1.getFitness()) {
 			return -1;
 		}
-		if(arg0.getFitness()==arg1.getFitness()) {
-			return 0;
-		}
-		return 2;
+		
+		return 0;
 		
 	}
 	
