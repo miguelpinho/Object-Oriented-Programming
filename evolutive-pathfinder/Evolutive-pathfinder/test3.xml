@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE simulation SYSTEM "simulation.dtd"> 
-<simulation finalinst="300" initpop="100" maxpop="5000" comfortsens="3"> 
-   <grid colsnb="50" rowsnb="40"/> 
-   <initialpoint xinitial="3" yinitial="4"/> 
-   <finalpoint xfinal="33" yfinal="39"/>
-   <specialcostzones num="1">
-      <zone xinitial="2" yinitial="2" xfinal="5" yfinal="5">4</zone>
-	  <zone xinitial="2" yinitial="2" xfinal="30" yfinal="30">5</zone>
+<simulation finalinst="1000" initpop="100" maxpop="600" comfortsens="3"> 
+   <grid colsnb="10" rowsnb="10"/> 
+   <initialpoint xinitial="5" yinitial="2"/> 
+   <finalpoint xfinal="9" yfinal="8"/>
+   <specialcostzones num="3">
+      <zone xinitial="4" yinitial="1" xfinal="6" yfinal="4">9</zone>
+	  <zone xinitial="3" yinitial="6" xfinal="5" yfinal="4">5</zone>
+	  <zone xinitial="5" yinitial="4" xfinal="7" yfinal="6">3</zone>
    </specialcostzones>
    <obstacles num="4">
-      <obstacle xpos="2" ypos="1"/>
-      <obstacle xpos="2" ypos="31"/>
-      <obstacle xpos="20" ypos="23"/>
-      <obstacle xpos="9" ypos="20"/>
+      <obstacle xpos="8" ypos="8"/>
+      <obstacle xpos="9" ypos="9"/>
+      <obstacle xpos="10" ypos="8"/>
+      <obstacle xpos="9" ypos="7"/>
    </obstacles>
    <events>
       <death param="10"/>

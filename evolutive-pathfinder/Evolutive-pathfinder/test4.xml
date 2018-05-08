@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE simulation SYSTEM "simulation.dtd"> 
-<simulation finalinst="300" initpop="100" maxpop="5000" comfortsens="3"> 
-   <grid colsnb="50" rowsnb="40"/> 
-   <initialpoint xinitial="3" yinitial="4"/> 
-   <finalpoint xfinal="33" yfinal="39"/>
-   <specialcostzones num="1">
-      <zone xinitial="2" yinitial="2" xfinal="5" yfinal="5">4</zone>
-	  <zone xinitial="2" yinitial="2" xfinal="30" yfinal="30">5</zone>
+<simulation finalinst="50" initpop="100" maxpop="500" comfortsens="3"> 
+   <grid colsnb="5" rowsnb="5"/> 
+   <initialpoint xinitial="2" yinitial="3"/> 
+   <finalpoint xfinal="4" yfinal="3"/>
+   <specialcostzones num="0">
    </specialcostzones>
    <obstacles num="4">
-      <obstacle xpos="2" ypos="1"/>
-      <obstacle xpos="2" ypos="31"/>
-      <obstacle xpos="20" ypos="23"/>
-      <obstacle xpos="9" ypos="20"/>
+      <obstacle xpos="3" ypos="3"/>
+      <obstacle xpos="3" ypos="4"/>
+      <obstacle xpos="4" ypos="4"/>
+      <obstacle xpos="3" ypos="2"/>
+      <obstacle xpos="4" ypos="2"/>
    </obstacles>
    <events>
       <death param="10"/>
