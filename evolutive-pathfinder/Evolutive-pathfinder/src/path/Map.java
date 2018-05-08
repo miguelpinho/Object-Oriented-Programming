@@ -76,10 +76,10 @@ public class Map {
 			System.out.println(aux + "  " + getInd(aux));
 			for(int j = 0 ; j < this.grid.get(getInd(aux)).size() ; j++) {
 				if (this.grid.get(getInd(aux)).get(j).coord.equals(zone.edges.get((i+1)%nrEdges))) {
-					this.grid.get(getInd(aux)).get(j).cost = zone.cost;
+					this.grid.get(getInd(aux)).get(j).cost = Math.max(zone.cost, this.grid.get(getInd(aux)).get(j).cost);
 				}
 				if (this.grid.get(getInd(aux)).get(j).coord.equals(zone.edges.get((i == 0) ? nrEdges-1 : i-1))) {
-					this.grid.get(getInd(aux)).get(j).cost = zone.cost;
+					this.grid.get(getInd(aux)).get(j).cost = Math.max(zone.cost, this.grid.get(getInd(aux)).get(j).cost);
 				}
 			}
 		}

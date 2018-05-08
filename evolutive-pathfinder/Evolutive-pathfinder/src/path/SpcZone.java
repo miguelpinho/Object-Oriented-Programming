@@ -51,5 +51,9 @@ public class SpcZone {
 		}
 		
 	}
+	
+	public void setCost(int c) {
+		this.cost = c;
+	}
 
 }
