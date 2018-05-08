@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
        
-        String fileName = "test.xml";
+        String fileName = "test2.xml";
         
         SAXParserFactory fact = SAXParserFactory.newInstance();
         SAXParser saxParser = fact.newSAXParser();
