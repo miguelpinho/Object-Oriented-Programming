@@ -44,33 +44,23 @@ public class PendingEventContainer {
     
     /**
      * 
-     * @return
-     */
-    public Event removeNext() {
-        Event next;
-        
-        if (events.isEmpty()) {
-            return null;
-        }
-        
-        next = events.poll();
-        
-        eventCounter++;
-        
-        return next;
-    }
-    
-    /**
-     * 
      */
     public boolean triggerNext() {
         Event next;
         
         if (events.isEmpty()) {
+            //System.out.println("**************No more events!");
+            
             return false;
         }
         
         next = events.poll();
+        
+        if (!next.isValid()) {
+            //System.out.println("***************Invalid event!");            
+            
+            return false;
+        }
         
         eventCounter++;
         

@@ -147,13 +147,14 @@ public class PopulationSimulation extends StochasticSimulation {
         
         for (int i = 0; i < specimens.size(); i++) {
 			if(specimens.get(i).isAlive()) {
-				if(spareCounter > 5) {
-					if(randGen.nextDouble() > specimens.get(i).getFitness()) {
-						specimens.get(i).die();
-					}
+				if(spareCounter < 5) {
+					
+					spareCounter++;
 				} else {
 				    
-				    spareCounter++;
+				    if(randGen.nextDouble() > specimens.get(i).getFitness()) {
+                        specimens.get(i).die();
+                    }
 				}
 			}
 			
