@@ -32,7 +32,9 @@ public class Path {
 	@Override
 	public String toString() {
 		String toPrint = "{";
-		for (int i = 0 ; i < this.path.size() ; i++) {
+		toPrint += this.path.get(0);
+		for (int i = 1 ; i < this.path.size() ; i++) {
+			toPrint += ',';
 			toPrint += this.path.get(i);
 		}
 		toPrint += "}";

@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
        
-        String fileName = "test2.xml";
+        String fileName = "test5.xml";
         
         SAXParserFactory fact = SAXParserFactory.newInstance();
         SAXParser saxParser = fact.newSAXParser();
@@ -44,7 +44,7 @@ public class Main {
         simulPopulation.printState();
         
         while (!(simulPopulation.checkEnded())) {
-            simulPopulation.step(input.tau / 20);
+            simulPopulation.step((double) input.tau * 0.05);
             
             observation ++;
                       
