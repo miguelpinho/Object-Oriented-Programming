@@ -17,6 +17,7 @@ public class Population {
 
     public Population(PopulationSimulation popSimul, LinkedList<Path> pioneers, int maxPop) {
         this.popSimul = popSimul;
+        this.maxPop = maxPop;
         
         this.specimens = new LinkedList<Specimen>();
                 

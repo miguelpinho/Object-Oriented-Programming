@@ -68,7 +68,7 @@ public class Specimen {
     public Path updateFitter(Path fittestPath) {
         if (entity.isFitter(fittestPath)) {
             
-            return new Path(entity);
+            return entity.replicate();
         }
         
         return fittestPath;
