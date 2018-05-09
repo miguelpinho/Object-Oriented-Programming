@@ -4,6 +4,8 @@ import path.Path;
 
 public class Specimen {
 
+    protected Population popul;
+    
     protected boolean alive;
     protected double deathTime;
     protected Path entity;
@@ -15,9 +17,18 @@ public class Specimen {
         alive = true;
     }
 
-    public Specimen reproduce() {
+    public void reproduce() {
         
-        return new Specimen(entity.reproduce());
+        Specimen son = new Specimen(entity.reproduce());
+        
+        try {
+            
+            popul.addSpecimen(son);
+        } catch (ExceedsPopulation e) {
+            
+            popul.epidemic();
+        }
+
     }
     
     public void die() {
@@ -50,10 +61,7 @@ public class Specimen {
         this.deathTime = deathTime;
     }
     
-    /**
-     * Updates fittest path.
-     */
-    public Path updateFittest(Path fittestPath) {
+    public Path updateFitter(Path fittestPath) {
         if (entity.isFitter(fittestPath)) {
             
             return new Path(entity);

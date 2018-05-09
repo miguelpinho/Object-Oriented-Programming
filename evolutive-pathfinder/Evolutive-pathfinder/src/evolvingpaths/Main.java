@@ -19,7 +19,7 @@ public class Main {
         SAXParserFactory fact = SAXParserFactory.newInstance();
         SAXParser saxParser = fact.newSAXParser();
         
-        ParseSimulationInput input = new ParseSimulationInput();
+        SimulationInput input = new SimulationInput();
         saxParser.parse(new File(fileName), input);
         
         // Create map

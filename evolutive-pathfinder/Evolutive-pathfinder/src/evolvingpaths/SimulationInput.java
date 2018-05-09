@@ -8,7 +8,7 @@ import javax.xml.parsers.*;
 import org.xml.sax.*;
 import org.xml.sax.helpers.*;
 
-public class ParseSimulationInput extends DefaultHandler{
+public class SimulationInput extends DefaultHandler{
     
     static String file_name;
     
@@ -171,7 +171,7 @@ public class ParseSimulationInput extends DefaultHandler{
         SAXParserFactory fact = SAXParserFactory.newInstance();
         SAXParser saxParser = fact.newSAXParser();
         
-        DefaultHandler handler = new ParseSimulationInput();
+        DefaultHandler handler = new SimulationInput();
         saxParser.parse(new File(file_name), handler);
     }
 }

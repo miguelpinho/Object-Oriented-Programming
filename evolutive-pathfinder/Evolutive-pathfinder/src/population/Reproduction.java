@@ -9,18 +9,10 @@ public class Reproduction extends PopulationEvent {
 
     @Override
     public void trigger() {
-        
-    	Specimen son = agent.reproduce();
     	
         geneBank.scheduleReproduce(agent);
     	
-    	try {
-            
-            geneBank.addSpecimen(son);
-        } catch (ExceedsPopulation e) {
-            
-            geneBank.epidemic();
-        }
+        agent.reproduce();
 
     }
 

@@ -12,7 +12,6 @@ public class Death extends PopulationEvent {
     	
     	agent.die();
     	
-    	geneBank.removeDead();
     }
  
 }
