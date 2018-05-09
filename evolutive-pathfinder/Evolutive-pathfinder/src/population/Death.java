@@ -2,9 +2,9 @@ package population;
 
 public class Death extends PopulationEvent {
 
-    public Death(Specimen agent, double triggerTime, PopulationSimulation geneBank) {
+    public Death(Specimen agent, double triggerTime, PopulationSimulation popSimul) {
         
-        super(agent, triggerTime, geneBank);
+        super(agent, triggerTime, popSimul);
     }
 
     @Override

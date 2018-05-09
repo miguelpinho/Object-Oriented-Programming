@@ -4,7 +4,7 @@ import simulation.Event;
 
 public abstract class PopulationEvent extends Event {
    
-    PopulationSimulation geneBank;
+    PopulationSimulation popSimul;
     Specimen agent;
     
     static double param;
@@ -14,6 +14,7 @@ public abstract class PopulationEvent extends Event {
         super(triggerTime);
         
         this.agent = agent;
+        this.popSimul = geneBank;
     }
     
     @Override

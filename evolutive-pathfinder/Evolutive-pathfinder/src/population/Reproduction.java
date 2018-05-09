@@ -2,15 +2,15 @@ package population;
 
 public class Reproduction extends PopulationEvent {
 
-    public Reproduction(Specimen agent, double triggerTime, PopulationSimulation geneBank) {
+    public Reproduction(Specimen agent, double triggerTime, PopulationSimulation popSimul) {
         
-        super(agent, triggerTime, geneBank);
+        super(agent, triggerTime, popSimul);
     }
 
     @Override
     public void trigger() {
     	
-        geneBank.scheduleReproduce(agent);
+        popSimul.scheduleReproduce(agent);
     	
         agent.reproduce();
 

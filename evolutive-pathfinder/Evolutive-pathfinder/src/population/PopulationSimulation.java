@@ -1,8 +1,6 @@
 package population;
 
 import simulation.StochasticSimulation;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import path.Path;
@@ -28,7 +26,7 @@ public class PopulationSimulation extends StochasticSimulation {
         this.paramMutation = paramMutation;
         this.paramReproduce = paramReproduce;
         
-        geneBank = new Population(pioneers, maxPop);
+        geneBank = new Population(this, pioneers, maxPop);
 
     }
     
@@ -36,7 +34,7 @@ public class PopulationSimulation extends StochasticSimulation {
             
         double timeAux;
         
-        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(1 - agent.getFitness())) * (double) paramDeath);
+        timeAux = currentTime + randExp((1 - Math.log10(1 - agent.getFitness())) * (double) paramDeath);
         
         if(timeAux < simulationTime) {
             
@@ -52,7 +50,7 @@ public class PopulationSimulation extends StochasticSimulation {
         
         double timeAux;
         
-        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * (double) paramReproduce);
+        timeAux = currentTime + randExp((1 - Math.log10(agent.getFitness())) * (double) paramReproduce);
         
         if(timeAux < agent.getDeathTime()) {
             PEC.add(new Mutation(agent, timeAux, this));
@@ -64,7 +62,7 @@ public class PopulationSimulation extends StochasticSimulation {
         
         double timeAux;
         
-        timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * (double) paramMutation);
+        timeAux = currentTime + randExp((1 - Math.log10(agent.getFitness())) * (double) paramMutation);
         
         if(timeAux < agent.getDeathTime()) {
             PEC.add(new Reproduction(agent, timeAux, this));
@@ -76,6 +74,12 @@ public class PopulationSimulation extends StochasticSimulation {
         
         PEC.deleteAllInvalid();
     }
+    
+    protected double randUniform() {
+            
+            return randGen.nextDouble();
+    }
+
     
     @Override
     public void printState() {

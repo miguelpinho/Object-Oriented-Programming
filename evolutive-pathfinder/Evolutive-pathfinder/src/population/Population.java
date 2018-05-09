@@ -15,16 +15,18 @@ public class Population {
     LinkedList<Specimen> specimens;
     protected Path fittest;
 
-    public Population(LinkedList<Path> pioneers, int maxPop) {
-        this.specimens = new LinkedList<Specimen>();
+    public Population(PopulationSimulation popSimul, LinkedList<Path> pioneers, int maxPop) {
+        this.popSimul = popSimul;
         
+        this.specimens = new LinkedList<Specimen>();
+                
         fittest = null;
         
         for(int i=0; i < pioneers.size(); i++) {
 
             try {
                 
-                addSpecimen(new Specimen(pioneers.get(i)));
+                addSpecimen(new Specimen(this, pioneers.get(i)));
             } catch (ExceedsPopulation e) {
                 
                 epidemic();
@@ -68,7 +70,7 @@ public class Population {
                     spareCounter++;
                 } else {
                     
-                    if(randGen.nextDouble() > specimens.get(i).getFitness()) {
+                    if(popSimul.randUniform() > specimens.get(i).getFitness()) {
                         specimens.get(i).die();
                     }
                 }
