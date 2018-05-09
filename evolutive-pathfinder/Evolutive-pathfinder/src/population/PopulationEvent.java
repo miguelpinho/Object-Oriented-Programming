@@ -1,6 +1,6 @@
 package population;
 
-import event.Event;
+import simulation.Event;
 
 public abstract class PopulationEvent extends Event {
     

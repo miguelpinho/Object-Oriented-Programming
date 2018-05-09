@@ -1,4 +1,4 @@
-package projectG06;
+package evolvingpaths;
 
 import java.io.File;
 import java.util.LinkedList;

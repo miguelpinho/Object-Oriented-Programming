@@ -1,4 +1,4 @@
-package event;
+package simulation;
 
 /**
  * Abstract class which defines an event of a simulation, scheduled to be triggered at a specific time

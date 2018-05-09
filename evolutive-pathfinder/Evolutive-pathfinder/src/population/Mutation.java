@@ -1,8 +1,8 @@
 package population;
 
-public class EventMutate extends PopulationEvent {
+public class Mutation extends PopulationEvent {
 
-    public EventMutate(Specimen agent, double triggerTime, PopulationSimulation geneBank) {
+    public Mutation(Specimen agent, double triggerTime, PopulationSimulation geneBank) {
         
         super(agent, triggerTime, geneBank);
     }

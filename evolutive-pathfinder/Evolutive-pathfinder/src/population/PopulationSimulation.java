@@ -102,7 +102,7 @@ public class PopulationSimulation extends StochasticSimulation {
         if(timeAux < simulationTime) {
             
             agent.setDeathTime(timeAux);
-            PEC.add(new EventDeath(agent, agent.getDeathTime(), this));  
+            PEC.add(new Death(agent, agent.getDeathTime(), this));  
         } else {
             
             agent.setDeathTime(simulationTime);
@@ -116,7 +116,7 @@ public class PopulationSimulation extends StochasticSimulation {
         timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * (double) paramReproduce);
         
         if(timeAux < agent.getDeathTime()) {
-            PEC.add(new EventMutate(agent, timeAux, this));
+            PEC.add(new Mutation(agent, timeAux, this));
         }   
         
     }
@@ -130,7 +130,7 @@ public class PopulationSimulation extends StochasticSimulation {
         timeAux = currentTime + StochasticSimulation.randomExp((1 - Math.log10(agent.getFitness())) * (double) paramMutation);
         
         if(timeAux < agent.getDeathTime()) {
-            PEC.add(new EventReproduce(agent, timeAux, this));
+            PEC.add(new Reproduction(agent, timeAux, this));
         }   
         
     }

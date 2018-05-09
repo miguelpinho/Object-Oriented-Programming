@@ -1,7 +1,6 @@
 package simulation;
 
 import java.util.Random;
-import event.PendingEventContainer;
 
 public abstract class StochasticSimulation {
 
