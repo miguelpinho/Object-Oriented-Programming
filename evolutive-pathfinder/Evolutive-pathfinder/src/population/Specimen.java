@@ -36,6 +36,11 @@ public class Specimen<T extends Organism<T>> {
         geneBank.removeDead();
     }
     
+    public void markDead() {
+    	
+    	alive = false;
+    }
+    
     public void mutate() {
         
         entity.mutate();

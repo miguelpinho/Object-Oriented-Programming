@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
        
-        String fileName = "test4.xml";
+        String fileName = args[0];
         
         SAXParserFactory fact = SAXParserFactory.newInstance();
         SAXParser saxParser = fact.newSAXParser();
@@ -52,7 +52,12 @@ public class Main {
             System.out.print(observation);
             System.out.println(":");
             simulPopulation.printState();
+            
+            simulPopulation.getFittest().printState();
         }
+        
+        System.out.print("Path of the best fit individual: ");
+        System.out.println(simulPopulation.getFittest());
         
     }
 

@@ -10,7 +10,7 @@ public class Population<T extends Organism<T>> {
     
     protected int maxPop;
     
-    LinkedList<Specimen<T>> specimens;
+    protected LinkedList<Specimen<T>> specimens;
     protected T fittest;
 
     public Population(PopulationSimulation<T> popSimul, LinkedList<T> pioneers, int maxPop) {
@@ -70,7 +70,7 @@ public class Population<T extends Organism<T>> {
                 } else {
                     
                     if(popSimul.randUniform() > specimens.get(i).getFitness()) {
-                        specimens.get(i).die();
+                        specimens.get(i).markDead();
                     }
                 }
             }
@@ -122,17 +122,20 @@ public class Population<T extends Organism<T>> {
         System.out.print("Population size: ");
         System.out.println(specimens.size());
         
-        if (fittest != null) {
-            fittest.printState();
-        }
     }
     
+    
     /**
-     * Updates fittest path.
+     * Updates fittest.
      */
     public void updateFittest(Specimen<T> entity) {
         
         fittest = entity.updateFitter(fittest);
+    }
+    
+    public T getFittest() {
+    	
+    	return fittest;
     }
     
 }

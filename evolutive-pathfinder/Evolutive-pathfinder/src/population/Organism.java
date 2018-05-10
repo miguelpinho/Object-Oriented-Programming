@@ -12,7 +12,5 @@ public interface Organism<T> {
     
     double getFitness();
     
-    void printState();
-    
     String toString();
 }

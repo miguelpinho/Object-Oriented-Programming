@@ -10,10 +10,12 @@ public class Reproduction<T extends Organism<T>> extends PopulationEvent<T> {
     @Override
     public void trigger() {
     	
-        popSimul.scheduleReproduce(agent);
+    	//popSimul.scheduleReproduce(agent);
+    	
+    	popSimul.scheduleReproduce(agent);
     	
         agent.reproduce();
-
+        
     }
 
 }

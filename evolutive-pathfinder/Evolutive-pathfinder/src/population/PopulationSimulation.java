@@ -86,5 +86,14 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
         
         geneBank.printState();
     }
+    
+    /**
+     * 
+     * @return fittest organism if any, null otherwise
+     */
+    public T getFittest() {
+    	
+    	return geneBank.getFittest();
+    }
 
 }
