@@ -4,8 +4,10 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Random;
 
+import population.Organism;
+
 /** Type of Specimen used in this problem **/
-public class Path {
+public class Path implements Organism<Path> {
     
     Map pathMap;
 	

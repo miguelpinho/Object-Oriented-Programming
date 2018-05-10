@@ -1,16 +1,14 @@
 package population;
 
-import path.Path;
+public class Specimen<T extends Organism<T>> {
 
-public class Specimen {
-
-    protected Population geneBank;
+    protected Population<T> geneBank;
     
     protected boolean alive;
     protected double deathTime;
-    protected Path entity;
+    protected T entity;
     
-    public Specimen(Population geneBank, Path entity) {
+    public Specimen(Population<T> geneBank, T entity) {
         this.geneBank = geneBank;
         
         this.entity = entity;
@@ -19,7 +17,7 @@ public class Specimen {
 
     public void reproduce() {
         
-        Specimen son = new Specimen(geneBank, entity.reproduce());
+        Specimen<T> son = new Specimen<T>(geneBank, entity.reproduce());
         
         try {
             
@@ -65,13 +63,13 @@ public class Specimen {
         this.deathTime = deathTime;
     }
     
-    public Path updateFitter(Path fittestPath) {
-        if (entity.isFitter(fittestPath)) {
+    public T updateFitter(T fittest) {
+        if (entity.isFitter(fittest)) {
             
             return entity.replicate();
         }
         
-        return fittestPath;
+        return fittest;
     }
     
 }

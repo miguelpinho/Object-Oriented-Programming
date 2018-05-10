@@ -33,7 +33,7 @@ public class Main {
         }
         
         // Initialize the population simulation
-        PopulationSimulation simulPopulation = new PopulationSimulation(input.tau, input.vmax, input.u, input.p, input.delta, initialPopulation);
+        PopulationSimulation<Path> simulPopulation = new PopulationSimulation<Path>(input.tau, input.vmax, input.u, input.p, input.delta, initialPopulation);
         
         // Run simulation step by step and print state
         int observation = 0;

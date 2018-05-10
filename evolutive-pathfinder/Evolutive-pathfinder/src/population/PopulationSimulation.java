@@ -3,11 +3,9 @@ package population;
 import simulation.StochasticSimulation;
 import java.util.LinkedList;
 
-import path.Path;
-
-public class PopulationSimulation extends StochasticSimulation {
+public class PopulationSimulation<T extends Organism<T>> extends StochasticSimulation {
 	
-    Population geneBank;
+    Population<T> geneBank;
     protected int paramDeath, paramMutation, paramReproduce;
     
     /**
@@ -19,18 +17,18 @@ public class PopulationSimulation extends StochasticSimulation {
      * @param paramMutation Parameter for mutation event random variable 
      * @param paramReproduce Parameter for reproduce event random variable
      */
-    public PopulationSimulation(double simulationTime, int maxPop, int paramDeath, int paramMutation, int paramReproduce, LinkedList<Path> pioneers) {
+    public PopulationSimulation(double simulationTime, int maxPop, int paramDeath, int paramMutation, int paramReproduce, LinkedList<T> pioneers) {
         super(simulationTime);
         
         this.paramDeath = paramDeath;
         this.paramMutation = paramMutation;
         this.paramReproduce = paramReproduce;
         
-        geneBank = new Population(this, pioneers, maxPop);
+        geneBank = new Population<T>(this, pioneers, maxPop);
 
     }
     
-    public void scheduleDeath(Specimen agent) {
+    public void scheduleDeath(Specimen<T> agent) {
             
         double timeAux;
         
@@ -39,33 +37,33 @@ public class PopulationSimulation extends StochasticSimulation {
         if(timeAux < simulationTime) {
             
             agent.setDeathTime(timeAux);
-            PEC.add(new Death(agent, agent.getDeathTime(), this));  
+            PEC.add(new Death<T>(agent, agent.getDeathTime(), this));  
         } else {
             
             agent.setDeathTime(simulationTime);
         }
     }
     
-    public void scheduleReproduce(Specimen agent) {
+    public void scheduleReproduce(Specimen<T> agent) {
         
         double timeAux;
         
         timeAux = currentTime + randExp((1 - Math.log10(agent.getFitness())) * (double) paramReproduce);
         
         if(timeAux < agent.getDeathTime()) {
-            PEC.add(new Mutation(agent, timeAux, this));
+            PEC.add(new Reproduction<T>(agent, timeAux, this));
         }   
         
     }
     
-    public void scheduleMutation(Specimen agent) {
+    public void scheduleMutation(Specimen<T> agent) {
         
         double timeAux;
         
         timeAux = currentTime + randExp((1 - Math.log10(agent.getFitness())) * (double) paramMutation);
         
         if(timeAux < agent.getDeathTime()) {
-            PEC.add(new Reproduction(agent, timeAux, this));
+            PEC.add(new Mutation<T>(agent, timeAux, this));
         }   
         
     }

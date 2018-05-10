@@ -4,22 +4,20 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import path.Path;
-
-public class Population {
+public class Population<T extends Organism<T>> {
     
-    PopulationSimulation popSimul;
+    PopulationSimulation<T> popSimul;
     
     protected int maxPop;
     
-    LinkedList<Specimen> specimens;
-    protected Path fittest;
+    LinkedList<Specimen<T>> specimens;
+    protected T fittest;
 
-    public Population(PopulationSimulation popSimul, LinkedList<Path> pioneers, int maxPop) {
+    public Population(PopulationSimulation<T> popSimul, LinkedList<T> pioneers, int maxPop) {
         this.popSimul = popSimul;
         this.maxPop = maxPop;
         
-        this.specimens = new LinkedList<Specimen>();
+        this.specimens = new LinkedList<Specimen<T>>();
                 
         fittest = null;
         
@@ -27,7 +25,7 @@ public class Population {
 
             try {
                 
-                addSpecimen(new Specimen(this, pioneers.get(i)));
+                addSpecimen(new Specimen<T>(this, pioneers.get(i)));
             } catch (ExceedsPopulation e) {
                 
                 epidemic();
@@ -40,7 +38,7 @@ public class Population {
      *  Adds a new specimen to the population, creating the corresponding death,reproduction and mutation events 
      *  @param newSpecimen Specimen to add
      */
-    public void addSpecimen(Specimen newSpecimen) throws ExceedsPopulation  {
+    public void addSpecimen(Specimen<T> newSpecimen) throws ExceedsPopulation  {
         
         specimens.add(newSpecimen);
         updateFittest(newSpecimen);
@@ -62,7 +60,7 @@ public class Population {
         
         int spareCounter = 0;
         
-        Collections.sort(specimens, new OrderFit());
+        Collections.sort(specimens, new OrderFit<T>());
         
         for (int i = 0; i < specimens.size(); i++) {
             if(specimens.get(i).isAlive()) {
@@ -87,12 +85,12 @@ public class Population {
     
     public void removeDead() {
         
-        Specimen s;
-        Iterator<Specimen> cur = specimens.iterator();
+        Specimen<T> s;
+        Iterator<Specimen<T>> cur = specimens.iterator();
         
         while(cur.hasNext()) {
             
-            s = (Specimen) cur.next();
+            s = (Specimen<T>) cur.next();
             
             if (!(s.isAlive())) {
                 
@@ -105,12 +103,12 @@ public class Population {
     
     public void removeAllDead() {
     
-        Specimen s;
-        Iterator<Specimen> cur = specimens.iterator();
+        Specimen<T> s;
+        Iterator<Specimen<T>> cur = specimens.iterator();
         
         while(cur.hasNext()) {
             
-            s = (Specimen) cur.next();
+            s = (Specimen<T>) cur.next();
             
             if (!(s.isAlive())) {
                 
@@ -132,7 +130,7 @@ public class Population {
     /**
      * Updates fittest path.
      */
-    public void updateFittest(Specimen entity) {
+    public void updateFittest(Specimen<T> entity) {
         
         fittest = entity.updateFitter(fittest);
     }

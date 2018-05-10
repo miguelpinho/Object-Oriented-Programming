@@ -2,10 +2,10 @@ package population;
 
 import java.util.Comparator;
 
-public class OrderFit implements Comparator<Specimen> {
+public class OrderFit<T extends Organism<T>> implements Comparator<Specimen<T>> {
 
 	@Override
-	public int compare(Specimen arg0, Specimen arg1) {
+	public int compare(Specimen<T> arg0, Specimen<T> arg1) {
 		
 	    // Descending fitness order
 		if(arg0.getFitness() < arg1.getFitness()) {
@@ -15,10 +15,7 @@ public class OrderFit implements Comparator<Specimen> {
 			return -1;
 		}
 		
-		return 0;
-		
+		return 0;	
 	}
 	
-	
-
 }

@@ -2,14 +2,14 @@ package population;
 
 import simulation.Event;
 
-public abstract class PopulationEvent extends Event {
+public abstract class PopulationEvent<T extends Organism<T>> extends Event {
    
-    PopulationSimulation popSimul;
-    Specimen agent;
+    PopulationSimulation<T> popSimul;
+    Specimen<T> agent;
     
     static double param;
 
-    public PopulationEvent(Specimen agent, double triggerTime, PopulationSimulation geneBank) {
+    public PopulationEvent(Specimen<T> agent, double triggerTime, PopulationSimulation<T> geneBank) {
         
         super(triggerTime);
         

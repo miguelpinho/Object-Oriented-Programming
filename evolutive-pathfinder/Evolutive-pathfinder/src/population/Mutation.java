@@ -1,8 +1,8 @@
 package population;
 
-public class Mutation extends PopulationEvent {
+public class Mutation<T extends Organism<T>> extends PopulationEvent<T> {
 
-    public Mutation(Specimen agent, double triggerTime, PopulationSimulation popSimul) {
+    public Mutation(Specimen<T> agent, double triggerTime, PopulationSimulation<T> popSimul) {
         
         super(agent, triggerTime, popSimul);
     }
