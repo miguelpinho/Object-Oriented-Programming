@@ -17,7 +17,7 @@ public class SimulationInput extends DefaultHandler{
     
     static String fileName;
     
-    int n, m, tau, k, v, vmax, u, delta, p, cmax = 0, nz = 0, no = 0;
+    int n, m, tau, k, v, vmax, u, delta, p, cmax = 1, nz = 0, no = 0;
     Point i, f;
     LinkedList<SpcZone> z;
     LinkedList<Point> o;
