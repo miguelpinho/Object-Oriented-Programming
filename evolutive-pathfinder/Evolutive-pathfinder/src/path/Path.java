@@ -50,7 +50,7 @@ public class Path implements Organism<Path> {
 	
 	/**
 	 * Function responsible for creating a new specimen, descendant from this one, with the characteristics needed
-	 * @return
+	 * @return new Path
 	 */
 	public Path reproduce() {
 		Path son = new Path(this);
@@ -90,7 +90,7 @@ public class Path implements Organism<Path> {
    
     /**
      * Function responsible for calculating the Fitness of a Specimen
-     * @return 
+     * @return Fitness
      */
     public double getFitness() {
     	float a = 1 -  ( (float) this.cost - (float) this.length() + 2) / (( (float) pathMap.cmax-1)* (float) this.length() + 3);
@@ -102,8 +102,7 @@ public class Path implements Organism<Path> {
     /**
      * Checks if a path is a better candidate than another one. If only one of them has reached the end, it is the one chose,
      * Else, compares them based on their fitness.
-     * @param path
-     * @return
+     * @param other One that is comparing
      */
     public boolean isFitter(Path other) {
         if (other == null)

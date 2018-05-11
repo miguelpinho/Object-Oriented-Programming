@@ -54,6 +54,7 @@ public class Population<T extends Organism<T>> {
      *  Adds a new specimen to the population, creating the corresponding death,reproduction and mutation events
      *  Throws exception if the maximum population size is exceeded
      *  @param newSpecimen Specimen to add
+     *  @throws ExceedsPopulation when the maximum population is exceeded
      */
     public void addSpecimen(Specimen<T> newSpecimen) throws ExceedsPopulation  {
         
@@ -150,6 +151,7 @@ public class Population<T extends Organism<T>> {
     
     /**
      * Updates fittest specimen
+     * @param entity specimen
      */
     public void updateFittest(Specimen<T> entity) {
         

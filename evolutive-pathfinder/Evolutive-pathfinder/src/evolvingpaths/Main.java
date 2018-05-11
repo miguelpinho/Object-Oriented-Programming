@@ -15,7 +15,7 @@ import path.Path;
 import simpopulation.PopulationSimulation;
 /**
  * Main Class of the program
- * @authors group 16
+ * @author group 16
  *
  */
 public class Main {

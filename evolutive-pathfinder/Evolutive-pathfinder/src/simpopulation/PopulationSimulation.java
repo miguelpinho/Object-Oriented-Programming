@@ -8,10 +8,6 @@ import java.util.LinkedList;
  * Used with the API defined in {@link simulation.StochasticSimulation}. Also outputs the fittest Specimen in any given observation
  * of the simulation. 
  * Creates new events, manages event times and keeps the internal state of the simulation (the population).
- * @param geneBank Population that will be simulated
- * @param paramDeath constant parameter given by the input that interferes with the Death time of each individual
- * @param paramMutation  constant parameter given by the input that interferes with the Mutation time of each individual
- * @param paramReproduce constant parameter given by the input that interferes with the Reproduction time of each individual
  * @author group16
  * 
  */
@@ -23,7 +19,6 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
     /**
      * Creates a simulation of a population evolution, with random death, reproduction and mutation events.
      * @param simulationTime The maximum time the simulation is allowed to run
-     * @param initPop The population at the beginning of the simulation
      * @param maxPop The max population allowed before an epidemic is triggered
      * @param paramDeath Parameter for death event random variable
      * @param paramMutation Parameter for mutation event random variable 

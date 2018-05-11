@@ -101,8 +101,7 @@ public class Specimen<T extends Organism<T>> {
     }
     
     /**
-     * 
-     * @return
+     * @return Death time
      */
     public double getDeathTime() {
         

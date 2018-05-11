@@ -81,6 +81,7 @@ public class PendingEventContainer {
     
     /**
      * Add new pending event.
+     * @param newEvent Event to add
      */
     public void add(Event newEvent) {
         

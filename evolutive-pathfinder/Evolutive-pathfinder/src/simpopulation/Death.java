@@ -5,10 +5,12 @@ package simpopulation;
  * @author group16
  */
 public class Death<T extends Organism<T>> extends PopulationEvent<T> {
-	/**
-     * Base constructor.
+	
+    /**
      * 
-     * @see PopulationEvent
+     * @param agent specimen involved   
+     * @param triggerTime time to trigger the event
+     * @param popSimul simulation this event belongs to
      */
     public Death(Specimen<T> agent, double triggerTime, PopulationSimulation<T> popSimul) {
         

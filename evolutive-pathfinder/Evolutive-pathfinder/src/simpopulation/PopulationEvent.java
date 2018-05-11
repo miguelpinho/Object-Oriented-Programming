@@ -5,8 +5,6 @@ import simulation.Event;
 /**
  * Abstract class which defines an event that will occur to a specific specimen of a population
  * It should be extended to define a specific event, with an associated effect.
- * @param popSimul The population whose state will change as a result of the event
- * @param agent The specimen that the event will occur over.
  * @author group16
  */
 public abstract class PopulationEvent<T extends Organism<T>> extends Event {

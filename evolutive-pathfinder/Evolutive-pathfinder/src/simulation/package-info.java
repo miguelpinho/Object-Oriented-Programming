@@ -3,6 +3,6 @@
  * 
  * The elements Event and Pending Event Container can also be reused for other types of simulation.
  * 
- * @author group16 - João Mak Duarte, Miguel Malaca & Miguel Pinho
+ * @author group16
  */
 package simulation;

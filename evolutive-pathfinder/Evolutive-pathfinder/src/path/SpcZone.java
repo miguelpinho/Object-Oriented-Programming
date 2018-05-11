@@ -64,7 +64,7 @@ public class SpcZone {
 	
 	/**
 	 * Change the cost of a zone
-	 * @param cost
+	 * @param c new cost
 	 */
 	public void setCost(int c) {
 		this.cost = c;

@@ -53,7 +53,7 @@ abstract public class Event implements Comparable<Event> {
     
     /**
      * Check if the event is still valid. It can be rendered invalid by some state in a simulation.
-     * @return
+     * @return if the event is valid
      */
     abstract public boolean isValid();
     
