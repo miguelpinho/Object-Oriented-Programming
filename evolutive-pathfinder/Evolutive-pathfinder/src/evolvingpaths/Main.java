@@ -8,7 +8,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import path.Map;
 import path.Path;
-import population.PopulationSimulation;
+import simpopulation.PopulationSimulation;
 
 public class Main {
 
