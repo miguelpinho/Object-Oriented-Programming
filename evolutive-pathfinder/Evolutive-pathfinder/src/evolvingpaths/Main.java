@@ -18,6 +18,12 @@ public class Main {
 
     public static void main(String[] args)  {
        
+    	if(args.length == 0)
+        {
+            System.out.println("USAGE: (java program) filename");
+            System.exit(1);
+        }
+
         String fileName = args[0];
         
         SAXParserFactory fact = SAXParserFactory.newInstance();
