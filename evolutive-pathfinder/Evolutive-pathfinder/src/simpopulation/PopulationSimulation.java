@@ -17,7 +17,7 @@ import java.util.LinkedList;
  */
 public class PopulationSimulation<T extends Organism<T>> extends StochasticSimulation {
 	
-    Population<T> geneBank;
+    protected Population<T> geneBank;
     protected int paramDeath, paramMutation, paramReproduce;
     
     /**
@@ -46,7 +46,7 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
      * Calculates the time of death and if it's valid adds the event to the PEC
      * @param agent Specimen to which the event applies
      */
-    public void scheduleDeath(Specimen<T> agent) {
+    protected void scheduleDeath(Specimen<T> agent) {
             
         double timeAux;
         
@@ -67,7 +67,7 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
      * @param agent Specimen to which the event applies
      * 
      */
-    public void scheduleReproduce(Specimen<T> agent) {
+    protected void scheduleReproduce(Specimen<T> agent) {
         
         double timeAux;
         
@@ -84,7 +84,7 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
      * @param agent Specimen to which the event applies
      */
     
-    public void scheduleMutation(Specimen<T> agent) {
+    protected void scheduleMutation(Specimen<T> agent) {
         
         double timeAux;
         
@@ -99,7 +99,7 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
      * Validity control of the PEC
      * Verifies if all events are valid or not, removing the ones that are not.
      */
-    public void updateSchedule() {
+    protected void updateSchedule() {
         
         PEC.deleteAllInvalid();
     }

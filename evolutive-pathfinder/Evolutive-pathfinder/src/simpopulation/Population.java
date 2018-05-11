@@ -15,7 +15,7 @@ import java.util.LinkedList;
  */
 public class Population<T extends Organism<T>> {
     
-    PopulationSimulation<T> popSimul;
+    protected PopulationSimulation<T> popSimul;
     
     protected int maxPop;
     

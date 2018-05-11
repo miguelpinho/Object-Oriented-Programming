@@ -11,8 +11,8 @@ import simulation.Event;
  */
 public abstract class PopulationEvent<T extends Organism<T>> extends Event {
    
-    PopulationSimulation<T> popSimul;
-    Specimen<T> agent;
+    protected PopulationSimulation<T> popSimul;
+    protected Specimen<T> agent;
     
     static double param;
     /**
