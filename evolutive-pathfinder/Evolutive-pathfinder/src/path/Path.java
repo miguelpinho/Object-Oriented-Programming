@@ -170,13 +170,6 @@ public class Path implements Organism<Path> {
         
     }
     
-    public void printFinal() {
-       
-        System.out.print("Path of the best fit individual: ");
-        System.out.println(toString());
-        
-    }
-    
     public static void main(String[] args) {
 		int n = 5, m = 4;
 		Point i = new Point(1,1);
