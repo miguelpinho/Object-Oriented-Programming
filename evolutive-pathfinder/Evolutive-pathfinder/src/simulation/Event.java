@@ -19,7 +19,8 @@ abstract public class Event implements Comparable<Event> {
     }
 
     /**
-     * Events are sorted by default in ascending order of trigger times. 
+     * Events are sorted by default in ascending order of trigger times.
+     * @param toEvent event to compare and sort 
      */
     @Override
     public int compareTo(Event toEvent) {

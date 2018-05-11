@@ -4,6 +4,15 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+
+/**
+ * Generic class that extends the Organism interface
+ * It's responsible for the state of the simulation
+ * @param popSimul Simulation with it interacts
+ * @param maxPop max number of individuals allowed in the population
+ * @param specimens List of individuals belonging to the population
+ * @param fittest generic parameter that refers to the fittest individual in specimens
+ */
 public class Population<T extends Organism<T>> {
     
     PopulationSimulation<T> popSimul;
@@ -12,7 +21,12 @@ public class Population<T extends Organism<T>> {
     
     protected LinkedList<Specimen<T>> specimens;
     protected T fittest;
-
+    /**
+     * Base constructor.
+     * @param popSimul Simulation with it interacts
+     * @param maxPop max number of individuals allowed in the population
+     * @param pioneers List of original individuals belonging to the population
+     */
     public Population(PopulationSimulation<T> popSimul, LinkedList<T> pioneers, int maxPop) {
         this.popSimul = popSimul;
         this.maxPop = maxPop;
@@ -35,7 +49,8 @@ public class Population<T extends Organism<T>> {
     }
     
     /**
-     *  Adds a new specimen to the population, creating the corresponding death,reproduction and mutation events 
+     *  Adds a new specimen to the population, creating the corresponding death,reproduction and mutation events
+     *  Throws exception if the maximum population size is exceeded
      *  @param newSpecimen Specimen to add
      */
     public void addSpecimen(Specimen<T> newSpecimen) throws ExceedsPopulation  {
@@ -82,7 +97,9 @@ public class Population<T extends Organism<T>> {
         removeAllDead();
         
     }
-    
+    /**
+     * Removes the first dead specimen found from the specimens list
+     */
     public void removeDead() {
         
         Specimen<T> s;
@@ -100,7 +117,9 @@ public class Population<T extends Organism<T>> {
             }
         }
     }
-    
+    /**
+     * Removes all dead specimens from the specimens list
+     */
     public void removeAllDead() {
     
         Specimen<T> s;
@@ -116,7 +135,9 @@ public class Population<T extends Organism<T>> {
             }
         }
     }
-    
+    /**
+     * Prints current population state
+     */
     public void printState() {
         
         System.out.print("Population size: ");
@@ -126,13 +147,16 @@ public class Population<T extends Organism<T>> {
     
     
     /**
-     * Updates fittest.
+     * Updates fittest specimen
      */
     public void updateFittest(Specimen<T> entity) {
         
         fittest = entity.updateFitter(fittest);
     }
-    
+    /**
+ 	 * Finds fittest specimen
+     * @return fittest specimen, null otherwise
+     */
     public T getFittest() {
     	
     	return fittest;

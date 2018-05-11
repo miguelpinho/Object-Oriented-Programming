@@ -2,7 +2,18 @@ package simpopulation;
 
 import simulation.StochasticSimulation;
 import java.util.LinkedList;
-
+/**
+ * 
+ * Class the manages the simulation at a top level. Outputs the fittest Specimen in any given observation
+ * of the simulation. 
+ * Creates new events and manages event times. 
+ * @param geneBank Population that will be simulated
+ * @param paramDeath constant parameter given by the input that interferes with the Death time of each individual
+ * @param paramMutation  constant parameter given by the input that interferes with the Mutation time of each individual
+ * @param paramReproduce constant parameter given by the input that interferes with the Reproduction time of each individual
+ * @author group16
+ * 
+ */
 public class PopulationSimulation<T extends Organism<T>> extends StochasticSimulation {
 	
     Population<T> geneBank;
@@ -16,6 +27,8 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
      * @param paramDeath Parameter for death event random variable
      * @param paramMutation Parameter for mutation event random variable 
      * @param paramReproduce Parameter for reproduce event random variable
+     * @param pioneers List of original individuals
+     * 
      */
     public PopulationSimulation(double simulationTime, int maxPop, int paramDeath, int paramMutation, int paramReproduce, LinkedList<T> pioneers) {
         super(simulationTime);
@@ -27,7 +40,11 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
         geneBank = new Population<T>(this, pioneers, maxPop);
 
     }
-    
+    /**
+     * Death event creator
+     * Calculates the time of death and if it's valid adds the event to the PEC
+     * @param agent Specimen to which the event applies
+     */
     public void scheduleDeath(Specimen<T> agent) {
             
         double timeAux;
@@ -43,7 +60,12 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
             agent.setDeathTime(simulationTime);
         }
     }
-    
+    /**
+     * Reproduction event creator
+     * Calculates the Reproduction time  and if it's valid adds the event to the PEC
+     * @param agent Specimen to which the event applies
+     * 
+     */
     public void scheduleReproduce(Specimen<T> agent) {
         
         double timeAux;
@@ -54,7 +76,12 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
             PEC.add(new Reproduction<T>(agent, timeAux, this));
         }   
         
-    }
+    } 
+    /**
+     * Mutation event creator
+     * Calculates the Mutation time and if it's valid adds the event to the PEC
+     * @param agent Specimen to which the event applies
+     */
     
     public void scheduleMutation(Specimen<T> agent) {
         
@@ -67,18 +94,27 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
         }   
         
     }
-    
+    /**
+     * Validity control of the PEC
+     * Verifies if all events are valid or not, removing the ones that are not.
+     */
     public void updateSchedule() {
         
         PEC.deleteAllInvalid();
     }
-    
+    /**
+     * Random double number generator
+     * @return random number between 0 and 1
+     */
     protected double randUniform() {
             
             return randGen.nextDouble();
     }
 
-    
+    /**
+     * State control
+     * Prints to the console the current state of the simulation
+     */
     @Override
     public void printState() {
         
@@ -88,7 +124,7 @@ public class PopulationSimulation<T extends Organism<T>> extends StochasticSimul
     }
     
     /**
-     * 
+     * Check best fit organism
      * @return fittest organism if any, null otherwise
      */
     public T getFittest() {
