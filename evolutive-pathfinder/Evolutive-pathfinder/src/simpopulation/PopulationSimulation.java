@@ -4,9 +4,10 @@ import simulation.StochasticSimulation;
 import java.util.LinkedList;
 /**
  * 
- * Class the manages the simulation at a top level. Outputs the fittest Specimen in any given observation
+ * Class the manages the population simulation at a top level. 
+ * Used with the API defined in {@link simulation.StochasticSimulation}. Also outputs the fittest Specimen in any given observation
  * of the simulation. 
- * Creates new events and manages event times. 
+ * Creates new events, manages event times and keeps the internal state of the simulation (the population).
  * @param geneBank Population that will be simulated
  * @param paramDeath constant parameter given by the input that interferes with the Death time of each individual
  * @param paramMutation  constant parameter given by the input that interferes with the Mutation time of each individual
