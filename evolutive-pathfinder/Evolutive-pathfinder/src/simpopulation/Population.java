@@ -4,6 +4,14 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+/**
+ * Generic class, that models the state of an living organism population and gives an interface for
+ * addition and removal of specimens. Also keeps track of the fittest organism in memory.
+ * 
+ * @author group16
+ *
+ * @param <T> generic type that implements {@link Organism}
+ */
 public class Population<T extends Organism<T>> {
     
     PopulationSimulation<T> popSimul;
@@ -12,6 +20,8 @@ public class Population<T extends Organism<T>> {
     
     protected LinkedList<Specimen<T>> specimens;
     protected T fittest;
+    
+    private static final int SPARE_TOTAL = 5;
 
     public Population(PopulationSimulation<T> popSimul, LinkedList<T> pioneers, int maxPop) {
         this.popSimul = popSimul;
@@ -64,7 +74,7 @@ public class Population<T extends Organism<T>> {
         
         for (int i = 0; i < specimens.size(); i++) {
             if(specimens.get(i).isAlive()) {
-                if(spareCounter < 5) {
+                if(spareCounter < SPARE_TOTAL) {
                     
                     spareCounter++;
                 } else {
