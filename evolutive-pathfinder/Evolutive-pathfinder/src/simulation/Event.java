@@ -3,18 +3,14 @@ package simulation;
 /**
  * Abstract class which defines an event of a simulation, scheduled to be triggered at a specific time
  * It should be extended to define a specific event, with an associated effect.
- * 
  * @author group16
  */
 abstract public class Event implements Comparable<Event> {
     
-    /**
-     * Time when the event will be triggered
-     */
     protected double triggerTime;
 
     /**
-     * Default constructor.
+     * Base constructor.
      * @param triggerTime time for the event to be triggered
      */
     public Event(double triggerTime) {
