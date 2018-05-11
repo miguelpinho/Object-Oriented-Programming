@@ -23,6 +23,8 @@ public class Population<T extends Organism<T>> {
     protected T fittest;
     
     private static final int SPARE_TOTAL = 5;
+    
+    /**
      * @param popSimul Simulation with it interacts
      * @param maxPop max number of individuals allowed in the population
      * @param pioneers List of original individuals belonging to the population
