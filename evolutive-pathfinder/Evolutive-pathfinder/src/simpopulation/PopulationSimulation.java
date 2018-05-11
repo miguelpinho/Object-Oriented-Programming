@@ -1,4 +1,4 @@
-package population;
+package simpopulation;
 
 import simulation.StochasticSimulation;
 import java.util.LinkedList;

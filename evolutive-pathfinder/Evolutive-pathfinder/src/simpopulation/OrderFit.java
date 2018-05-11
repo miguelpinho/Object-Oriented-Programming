@@ -1,4 +1,4 @@
-package population;
+package simpopulation;
 
 import java.util.Comparator;
 

@@ -1,4 +1,4 @@
-package population;
+package simpopulation;
 
 public class ExceedsPopulation extends Exception {
 

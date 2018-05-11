@@ -1,4 +1,4 @@
-package population;
+package simpopulation;
 
 public class Death<T extends Organism<T>> extends PopulationEvent<T> {
 

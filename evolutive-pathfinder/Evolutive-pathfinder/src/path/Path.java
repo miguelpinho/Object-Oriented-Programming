@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Random;
 
-import population.Organism;
+import simpopulation.Organism;
 
 /** Type of Specimen used in this problem **/
 public class Path implements Organism<Path> {
