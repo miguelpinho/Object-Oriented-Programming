@@ -1,7 +1,7 @@
 package simpopulation;
 /**
  * Class which defines a reproduction event that will occur to a specific specimen of a population
- * In this event the reproduction event is triggered
+ * In this event the reproduction is triggered
  * @author group16
  */
 public class Reproduction<T extends Organism<T>> extends PopulationEvent<T> {
@@ -16,8 +16,8 @@ public class Reproduction<T extends Organism<T>> extends PopulationEvent<T> {
     }
     /**
      * Trigger function
-     * 
-     * 
+     * Creates a new reproduce event for the same individual
+     * Triggers the agent's reproduction 
      */
     @Override
     public void trigger() {
