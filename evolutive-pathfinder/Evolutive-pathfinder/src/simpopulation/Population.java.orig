@@ -4,7 +4,16 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+<<<<<<< HEAD
 
+/**
+ * Generic class that extends the Organism interface
+ * It's responsible for the state of the simulation
+ * @param popSimul Simulation with it interacts
+ * @param maxPop max number of individuals allowed in the population
+ * @param specimens List of individuals belonging to the population
+ * @param fittest generic parameter that refers to the fittest individual in specimens
+=======
 /**
  * Generic class, that models the state of an living organism population and gives an interface for
  * addition and removal of specimens. Also keeps track of the fittest organism in memory.
@@ -12,6 +21,7 @@ import java.util.LinkedList;
  * @author group16
  *
  * @param <T> generic type that implements {@link Organism}
+>>>>>>> cf2431b69414038fa1e77a1b9e702940f5267bca
  */
 public class Population<T extends Organism<T>> {
     
@@ -21,12 +31,18 @@ public class Population<T extends Organism<T>> {
     
     protected LinkedList<Specimen<T>> specimens;
     protected T fittest;
-    
-    private static final int SPARE_TOTAL = 5;
+<<<<<<< HEAD
+    /**
+     * Base constructor.
      * @param popSimul Simulation with it interacts
      * @param maxPop max number of individuals allowed in the population
      * @param pioneers List of original individuals belonging to the population
      */
+=======
+    
+    private static final int SPARE_TOTAL = 5;
+
+>>>>>>> cf2431b69414038fa1e77a1b9e702940f5267bca
     public Population(PopulationSimulation<T> popSimul, LinkedList<T> pioneers, int maxPop) {
         this.popSimul = popSimul;
         this.maxPop = maxPop;
