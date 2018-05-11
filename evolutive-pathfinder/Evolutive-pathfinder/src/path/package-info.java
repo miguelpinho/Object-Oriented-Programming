@@ -1,6 +1,6 @@
 /**
  * 
  * 
- * @author group16 - João Mak, Miguel Malaca & Miguel Pinho
+ * @author group16 - João Mak Duarte, Miguel Malaca & Miguel Pinho
  */
 package path;
