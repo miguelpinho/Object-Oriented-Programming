@@ -81,7 +81,7 @@ public class Specimen<T extends Organism<T>> {
     }
 
     /**
-     * 
+     * Calculates the specimen fitness using the facility provided in the {@link Organism} type.
      * 
      * @return the fitness of this specimen
      */
@@ -90,11 +90,20 @@ public class Specimen<T extends Organism<T>> {
         return entity.getFitness();
     }
     
+    /**
+     * Returns the state of this specimen.
+     * 
+     * @return true if alive, false if dead
+     */
     public boolean isAlive() {
         
         return alive;
     }
     
+    /**
+     * 
+     * @return
+     */
     public double getDeathTime() {
         
         return deathTime;
