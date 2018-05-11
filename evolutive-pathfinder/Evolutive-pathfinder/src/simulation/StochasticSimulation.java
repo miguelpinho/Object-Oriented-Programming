@@ -2,16 +2,40 @@ package simulation;
 
 import java.util.Random;
 
+/**
+ * Abstract class which defines an Event based random stochastic.
+ * A simulation, which has a current time and a maximum simulation time, 
+ * can be run for a given time, while there are events to process.
+ * 
+ * Provides the basic functioning for extension.
+ * 
+ * @author group16
+ */
 public abstract class StochasticSimulation {
 
+    /**
+     * Present instant of the simulation
+     */
     protected double currentTime;
+    
+    /**
+     * Maximum simulation time
+     */
     protected double simulationTime;
+    
+    /**
+     * Keeps the future events and implicitely orders them by temporal order
+     */
     protected PendingEventContainer PEC;
     
+    /**
+     * Random generator of this simulation
+     */
     protected Random randGen;  
 	
     /**
-     * 
+     * Default constructor.
+     * @param simulationTime maximum simulation time
      */
 	public StochasticSimulation(double simulationTime) {
         super();
@@ -68,8 +92,8 @@ public abstract class StochasticSimulation {
 	
 	/**
 	 * Generates a random exponential variable. Based on the code given in the project presentation lecture.
-	 * @param mean
-	 * @return
+	 * @param mean mean of the random variable
+	 * @return random exponential variable
 	 */
 	protected double randExp(double mean) {
         
