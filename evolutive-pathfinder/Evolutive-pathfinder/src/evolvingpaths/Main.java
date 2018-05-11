@@ -13,7 +13,11 @@ import org.xml.sax.SAXException;
 import path.Map;
 import path.Path;
 import simpopulation.PopulationSimulation;
-
+/**
+ * Main Class of the program
+ * @authors group 16
+ *
+ */
 public class Main {
 
     public static void main(String[] args)  {
