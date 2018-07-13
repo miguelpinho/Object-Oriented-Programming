@@ -21,7 +21,7 @@ public class Path {
 		
 	}
 	
-	public Path( Path other) {
+	private Path( Path other) {
 	    this.pathMap = other.pathMap;
 	    
 	    this.cost = other.cost;
@@ -39,6 +39,11 @@ public class Path {
 		}
 		toPrint += "}";
 		return toPrint;
+	}
+	
+	public Path replicate() {
+	    
+	    return new Path(this);
 	}
 	
 	/**

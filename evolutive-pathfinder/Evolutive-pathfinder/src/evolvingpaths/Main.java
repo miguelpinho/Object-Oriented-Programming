@@ -1,4 +1,4 @@
-package projectG06;
+package evolvingpaths;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -14,12 +14,12 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
        
-        String fileName = "test5.xml";
+        String fileName = "test4.xml";
         
         SAXParserFactory fact = SAXParserFactory.newInstance();
         SAXParser saxParser = fact.newSAXParser();
         
-        ParseSimulationInput input = new ParseSimulationInput();
+        SimulationInput input = new SimulationInput();
         saxParser.parse(new File(fileName), input);
         
         // Create map

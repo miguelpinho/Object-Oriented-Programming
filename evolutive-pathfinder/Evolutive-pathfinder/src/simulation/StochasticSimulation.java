@@ -1,7 +1,6 @@
 package simulation;
 
 import java.util.Random;
-import event.PendingEventContainer;
 
 public abstract class StochasticSimulation {
 
@@ -9,7 +8,7 @@ public abstract class StochasticSimulation {
     protected double simulationTime;
     protected PendingEventContainer PEC;
     
-    protected static Random randGen = new Random();  
+    protected Random randGen;  
 	
     /**
      * 
@@ -20,6 +19,8 @@ public abstract class StochasticSimulation {
         this.currentTime = 0.0;
         this.simulationTime = simulationTime;
         PEC = new PendingEventContainer();
+        
+        randGen = new Random();
     }
 
 	/**
@@ -70,9 +71,11 @@ public abstract class StochasticSimulation {
 	 * @param mean
 	 * @return
 	 */
-	protected static double randomExp(double mean) {
+	protected double randExp(double mean) {
         
 	    return -mean * Math.log(1.0 - randGen.nextDouble());
 	}
-
+	
+	
+	
 }

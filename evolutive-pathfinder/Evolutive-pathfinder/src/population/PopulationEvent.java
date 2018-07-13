@@ -1,20 +1,20 @@
 package population;
 
-import event.Event;
+import simulation.Event;
 
 public abstract class PopulationEvent extends Event {
-    
-    PopulationSimulation geneBank;
+   
+    PopulationSimulation popSimul;
     Specimen agent;
     
     static double param;
 
-    public PopulationEvent(Specimen agent, double triggerTime, PopulationSimulation geneBank ) {
+    public PopulationEvent(Specimen agent, double triggerTime, PopulationSimulation geneBank) {
         
         super(triggerTime);
         
         this.agent = agent;
-        this.geneBank = geneBank;
+        this.popSimul = geneBank;
     }
     
     @Override

@@ -1,4 +1,4 @@
-package event;
+package simulation;
 
 import java.util.PriorityQueue;
 
