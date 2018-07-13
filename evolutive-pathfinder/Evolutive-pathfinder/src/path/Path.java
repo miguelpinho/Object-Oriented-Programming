@@ -4,8 +4,10 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Random;
 
+import simpopulation.Organism;
+
 /** Type of Specimen used in this problem **/
-public class Path {
+public class Path implements Organism<Path> {
     
     Map pathMap;
 	
@@ -48,7 +50,7 @@ public class Path {
 	
 	/**
 	 * Function responsible for creating a new specimen, descendant from this one, with the characteristics needed
-	 * @return
+	 * @return new Path
 	 */
 	public Path reproduce() {
 		Path son = new Path(this);
@@ -88,7 +90,7 @@ public class Path {
    
     /**
      * Function responsible for calculating the Fitness of a Specimen
-     * @return 
+     * @return Fitness
      */
     public double getFitness() {
     	float a = 1 -  ( (float) this.cost - (float) this.length() + 2) / (( (float) pathMap.cmax-1)* (float) this.length() + 3);
@@ -100,8 +102,7 @@ public class Path {
     /**
      * Checks if a path is a better candidate than another one. If only one of them has reached the end, it is the one chose,
      * Else, compares them based on their fitness.
-     * @param path
-     * @return
+     * @param other One that is comparing
      */
     public boolean isFitter(Path other) {
         if (other == null)
@@ -167,56 +168,5 @@ public class Path {
         System.out.println(getFitness());
         
     }
-    
-    public static void main(String[] args) {
-		int n = 5, m = 4;
-		Point i = new Point(1,1);
-		Point f = new Point(5,4);
-		LinkedList<SpcZone> z = new LinkedList<SpcZone>();
-		LinkedList<Point> o = new LinkedList<Point>();
-		
-		z.add(new SpcZone(new Point(1, 1), new Point(5,4), 4));
-		o.add(new Point(2, 3));
-		
-		
-		Map map = new Map(n, m, 4, 1, i, f, z, o);
-		
-		for (int c1 = 0 ; c1 < map.grid.size(); c1++) {
-			LinkedList<Edge> aux = map.grid.get(c1);
-			for (int c2 = 0 ; c2 < aux.size(); c2++) {
-				Edge aux2 = aux.get(c2);
-				System.out.println(aux2.coord + "  " + aux2.cost + "  " + c2 + "  " + c1);
-			}
-		}
-		
-		Path p = new Path(map);
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		p.mutate();
-		System.out.println(p + " " + p.cost + " " +  p.getFitness());
-		Path s = (Path) p.reproduce();
-		System.out.println(s + " " + s.cost + " " + s.getFitness());
-		
-	}
+ 
 }

@@ -3,13 +3,20 @@ package path;
 import java.awt.Point;
 import java.util.LinkedList;
 
-/** Class that has all the information about the grid **/
+/** 
+ * Class that has all the information about the grid 
+ */
 public class Map {
 	int length, width;
 	Point initialPoint;
 	Point finalPoint;
 	int cmax;
 	int k;
+	
+	/**
+	 * Implemented grid with a list of lists of edges. 
+	 * They represent the connections that each point has
+	 */
 	LinkedList<LinkedList<Edge>> grid;
 	
 	public Map(int n, int m,  int cmax, int k, Point i , Point f, LinkedList<SpcZone> zones, LinkedList<Point> obstacles){
@@ -39,13 +46,20 @@ public class Map {
 				this.grid.add(aux);
 			}
 		}
-		System.out.println(zones.size());
 		for (int i = 0 ; i < zones.size(); i++) {
 			changeCost(zones.get(i));
 		}
 		
 	}
 	
+	/**
+	 * FInding the connections of a point in the grid. 
+	 * It starts by seeing the left position and goes clockwise until the down position
+	 * @param x
+	 * @param y
+	 * @param obstacles
+	 * @param new list of connections
+	 */
 	private void findEdges (int i, int j, LinkedList<Point> obstacles, LinkedList<Edge> aux) {
 		
 		// Left edge, if it exists
@@ -61,11 +75,16 @@ public class Map {
 		if(inMap(i, j-1) && !obstacles.contains(new Point(i, j-1))) aux.addLast(new Edge(i, j-1, 1));
 	}
 	
+	// Sees if a point is in the map
 	private boolean inMap (int i, int j) {
 		if ( i >= 1 && i <= this.length && j >= 1 && j <= this.width) return true;
 		return false;
 	}
 	
+	/**
+	 * Goes trough every point of the special zone and changes the right costs in the grid
+	 * @param zone
+	 */
 	private void changeCost(SpcZone zone) {
 		
 		Point aux;
@@ -73,19 +92,27 @@ public class Map {
 		
 		for (int i = 0 ; i < nrEdges ; i++) {
 			aux = zone.edges.get(i);
-			System.out.println(aux + "  " + getInd(aux));
-			for(int j = 0 ; j < this.grid.get(getInd(aux)).size() ; j++) {
-				if (this.grid.get(getInd(aux)).get(j).coord.equals(zone.edges.get((i+1)%nrEdges))) {
-					this.grid.get(getInd(aux)).get(j).cost = Math.max(zone.cost, this.grid.get(getInd(aux)).get(j).cost);
+			if (inMap(aux.x, aux.y)) {
+				
+				for(int j = 0 ; j < this.grid.get(getInd(aux)).size() ; j++) {
+					if (this.grid.get(getInd(aux)).get(j).coord.equals(zone.edges.get((i+1)%nrEdges))) {
+						this.grid.get(getInd(aux)).get(j).cost = Math.max(zone.cost, this.grid.get(getInd(aux)).get(j).cost);
+					}
+					if (this.grid.get(getInd(aux)).get(j).coord.equals(zone.edges.get((i == 0) ? nrEdges-1 : i-1))) {
+						this.grid.get(getInd(aux)).get(j).cost = Math.max(zone.cost, this.grid.get(getInd(aux)).get(j).cost);
+					}
 				}
-				if (this.grid.get(getInd(aux)).get(j).coord.equals(zone.edges.get((i == 0) ? nrEdges-1 : i-1))) {
-					this.grid.get(getInd(aux)).get(j).cost = Math.max(zone.cost, this.grid.get(getInd(aux)).get(j).cost);
-				}
+			
 			}
 		}
 	}
 	
-	// Conversion of coordinates in the index
+	/**
+	 * Transforms coordinates in the id of the position. The positions will be sorted eith this 
+	 * number in the grid.
+	 * @param p
+	 * @return
+	 */
 	int getInd(Point p) {
 		return (p.x-1)*this.width + (p.y-1)%this.width;
 	}

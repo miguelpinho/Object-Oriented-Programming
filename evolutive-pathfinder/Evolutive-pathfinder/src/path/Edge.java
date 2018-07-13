@@ -2,6 +2,11 @@ package path;
 
 import java.awt.Point;
 
+/**
+ * 
+ * Representation of an edge of the Map and the Path. It has the final position and the cost of connection.
+ *
+ */
 class Edge {
 	
 	Point coord;
@@ -19,7 +24,10 @@ class Edge {
 		result = prime * result + coord.x + coord.y;
 		return result;
 	}
-
+	
+	/**
+	 * In order to compare 2 edges it is just needed to compare the point that is connected and not the cost 
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

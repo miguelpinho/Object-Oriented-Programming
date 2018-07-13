@@ -3,11 +3,20 @@ package path;
 import java.awt.Point;
 import java.util.LinkedList;
 
+/**
+ * 
+ * A special zone represented in a class. Used to keep all the info about the zones in the input
+ *
+ */
 public class SpcZone {
 	
 	int cost;
 	Point initialPoint;
 	Point finalPoint;
+	
+	/**
+	 * All the edges that will be part of the zone with the bigger cost
+	 */
 	LinkedList<Point> edges;
 	
 	public SpcZone(Point i, Point f, int z) {
@@ -18,6 +27,11 @@ public class SpcZone {
 		getEdges();
 	}
 	
+	/**
+	 * Function responsible for getting all the edges that will be part of a zone.
+	 * It goes from the initial point to the final point and vice versa in order to save all the 
+	 * edges
+	 */
 	void getEdges() {
 		this.edges = new LinkedList<Point>();
 		
@@ -46,12 +60,12 @@ public class SpcZone {
 			this.edges.add(new Point(current.x, current.y));
 		}
 		
-		for (int c2 = 0 ; c2 < this.edges.size(); c2++) {
-			System.out.println(this.edges.get(c2).x + "  " + this.edges.get(c2).y);
-		}
-		
 	}
 	
+	/**
+	 * Change the cost of a zone
+	 * @param c new cost
+	 */
 	public void setCost(int c) {
 		this.cost = c;
 	}

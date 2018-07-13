@@ -1,26 +1,60 @@
 package evolvingpaths;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.xml.sax.SAXException;
+
 import path.Map;
 import path.Path;
-import population.PopulationSimulation;
-
+import simpopulation.PopulationSimulation;
+/**
+ * Main Class of the program
+ * @author group 16
+ *
+ */
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
        
-        String fileName = "test4.xml";
+    	if(args.length == 0)
+        {
+            System.out.println("USAGE: (java program) filename");
+            System.exit(1);
+        }
+
+        String fileName = args[0];
         
         SAXParserFactory fact = SAXParserFactory.newInstance();
-        SAXParser saxParser = fact.newSAXParser();
+        SAXParser saxParser = null;
+		try {
+			saxParser = fact.newSAXParser();
+		} catch (ParserConfigurationException e1) {
+			e1.printStackTrace();
+			System.out.println("ERROR: Creating parser");
+			System.exit(1);
+		} catch (SAXException e1) {
+			e1.printStackTrace();
+			System.out.println("ERROR: Creating parser");
+			System.exit(1);
+		}
         
         SimulationInput input = new SimulationInput();
-        saxParser.parse(new File(fileName), input);
+        try {
+			saxParser.parse(new File(fileName), input);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			System.out.println("ERROR: Initializing parser");
+			System.exit(1);
+		} catch (IOException e) {
+			System.out.println("ERROR: Input file not available");
+			System.exit(1);
+		}
         
         // Create map
         Map inputMap = new Map(input.n, input.m, input.cmax, input.k, input.i, input.f, input.z, input.o);
@@ -33,7 +67,7 @@ public class Main {
         }
         
         // Initialize the population simulation
-        PopulationSimulation simulPopulation = new PopulationSimulation(input.tau, input.vmax, input.u, input.p, input.delta, initialPopulation);
+        PopulationSimulation<Path> simulPopulation = new PopulationSimulation<Path>(input.tau, input.vmax, input.u, input.p, input.delta, initialPopulation);
         
         // Run simulation step by step and print state
         int observation = 0;
@@ -52,7 +86,12 @@ public class Main {
             System.out.print(observation);
             System.out.println(":");
             simulPopulation.printState();
+            
+            simulPopulation.getFittest().printState();
         }
+        
+        System.out.print("Path of the best fit individual: ");
+        System.out.println(simulPopulation.getFittest());
         
     }
 

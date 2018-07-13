@@ -3,7 +3,7 @@ package simulation;
 /**
  * Abstract class which defines an event of a simulation, scheduled to be triggered at a specific time
  * It should be extended to define a specific event, with an associated effect.
- * @author group06
+ * @author group16
  */
 abstract public class Event implements Comparable<Event> {
     
@@ -19,7 +19,8 @@ abstract public class Event implements Comparable<Event> {
     }
 
     /**
-     * Events are sorted by default in ascending order of trigger times. 
+     * Events are sorted by default in ascending order of trigger times.
+     * @param toEvent event to compare and sort 
      */
     @Override
     public int compareTo(Event toEvent) {
@@ -52,7 +53,7 @@ abstract public class Event implements Comparable<Event> {
     
     /**
      * Check if the event is still valid. It can be rendered invalid by some state in a simulation.
-     * @return
+     * @return if the event is valid
      */
     abstract public boolean isValid();
     

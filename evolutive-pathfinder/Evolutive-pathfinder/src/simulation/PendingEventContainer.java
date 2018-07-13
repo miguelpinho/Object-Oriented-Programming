@@ -5,11 +5,19 @@ import java.util.PriorityQueue;
 /**
  * Implements a pending event container, where Events can be added 
  * and accessed/triggered by temporal order.
- * @author grupo16
+ * 
+ * @author group16
  */
 public class PendingEventContainer {
 
+    /**
+     * Priority queue of the pending events
+     */
     protected PriorityQueue<Event> events;
+    
+    /**
+     * Counts the events triggered since the beginning
+     */
     protected int eventCounter;
     
     /**
@@ -42,6 +50,11 @@ public class PendingEventContainer {
         return next.getTime();
     }
     
+    /**
+     * Trigger the next event, if any is available and the next is valid
+     * 
+     * @return true if an event was triggered
+     */
     public boolean triggerNext() {
         Event next;
         
@@ -68,6 +81,7 @@ public class PendingEventContainer {
     
     /**
      * Add new pending event.
+     * @param newEvent Event to add
      */
     public void add(Event newEvent) {
         
